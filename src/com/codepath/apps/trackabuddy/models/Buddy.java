@@ -10,9 +10,12 @@ public class Buddy extends ParseObject {
 		super();
 	}
 	
-	public Buddy(String name, String imgUrl) {
+	public Buddy(String name, String imgUrl, String city, Long distance) {
 		put("name", name);
 		put("imgUrl", imgUrl);
+		//put("location", location);
+		put("city", city);
+		put("distance", "distance");
 	}
 	
 	public String getName() {
@@ -21,5 +24,13 @@ public class Buddy extends ParseObject {
 
 	public String getImgUrl() {
 		return getString("imgUrl");
-	}	
+	}
+	
+	public String getCity() {
+		return getString("city");
+	}
+	
+	public String getDistance() {
+		return getString("distance");
+	}
 }

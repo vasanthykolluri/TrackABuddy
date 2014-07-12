@@ -2,7 +2,9 @@ package com.codepath.apps.trackabuddy;
 
 import android.content.Context;
 
-import com.codepath.apps.trackabuddy.models.*;
+import com.codepath.apps.trackabuddy.models.Buddy;
+import com.codepath.apps.trackabuddy.models.Profile;
+import com.codepath.apps.trackabuddy.models.Settings;
 import com.codepath.apps.trackabuddy.networking.RestClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

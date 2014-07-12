@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		Buddy item = new Buddy("dummy", "dummy");
+		Buddy item = new Buddy("dummy", "dummy", "San Jose", (long) 100);
 		item.saveInBackground();
 
 		// Specify which class to query
