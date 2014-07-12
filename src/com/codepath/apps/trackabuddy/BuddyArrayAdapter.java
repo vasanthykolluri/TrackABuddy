@@ -52,7 +52,7 @@ public class BuddyArrayAdapter extends ArrayAdapter<Buddy> {
 				ivProfileImage);
 		tvBuddyName.setText(buddy.getName());
 		tvCity.setText(buddy.getCity());
-		tvDistance.setText(buddy.getDistance());
+		tvDistance.setText(buddy.getDistance().toString());
 
 		// Save the buddyname in the imageView tag
 

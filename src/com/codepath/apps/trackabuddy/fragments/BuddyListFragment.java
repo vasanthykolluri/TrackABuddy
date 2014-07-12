@@ -1,37 +1,37 @@
 package com.codepath.apps.trackabuddy.fragments;
 
 import java.util.ArrayList;
-
-import org.json.JSONArray;
+import java.util.List;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.codepath.apps.trackabuddy.BuddyArrayAdapter;
 import com.codepath.apps.trackabuddy.EndlessScrollListener;
-import com.codepath.apps.trackabuddy.TrackABuddyApp;
 import com.codepath.apps.trackabuddy.models.Buddy;
 import com.codepath.apps.trackabuddy.networking.GoogleMapClient;
+import com.codepath.apps.trackabuddy.networking.ParseClient;
 import com.example.trackabuddy.R;
-import com.loopj.android.http.JsonHttpResponseHandler;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 
 public class BuddyListFragment extends Fragment {
 	private ArrayList<Buddy> buddies;
 	private BuddyArrayAdapter aBuddies;
 	private ListView lvBuddies;
-	protected GoogleMapClient client;
+	protected ParseClient parseClient;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		buddies = new ArrayList<Buddy>();
 		aBuddies = new BuddyArrayAdapter(getActivity(), buddies);
-		//client = TrackABuddyApp.getRestClient();
 	}
 
 	@Override
@@ -51,19 +51,27 @@ public class BuddyListFragment extends Fragment {
 			}
 		});
 
+		populateBuddyList();
+		
 		// Return the layout view
 		return v;
 	}
 
-	public void clearAll() {
-		aBuddies.clear();
-	}
-
-	public void addAll(ArrayList<Buddy> buddies) {
-		aBuddies.addAll(buddies);
-	}
-
 	public void populateBuddyList() {
+		// Specify which class to query
+		ParseQuery<Buddy> query = ParseQuery.getQuery(Buddy.class);
+
+		query.findInBackground(new FindCallback<Buddy>() {
+
+			@Override
+			public void done(List<Buddy> buddyList, ParseException e) {
+				if (e == null) {
+					Toast.makeText(getActivity(), "ParseQuery Success", Toast.LENGTH_LONG);
+					aBuddies.clear();
+					aBuddies.addAll(buddyList);
+				}
+			}
+		});
 
 	}
 

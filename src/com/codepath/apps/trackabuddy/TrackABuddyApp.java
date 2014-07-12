@@ -50,12 +50,11 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 		ParseObject.registerSubclass(Profile.class);
 		ParseObject.registerSubclass(Settings.class);
 
-
 		// Add your initialization code here
 		Parse.initialize(this, "0x2akUUbhpwPM2eiE3rvXeFi7kGapSQufzBTluHk",
 				"Fj3d6aN04KvRIVZjPGsJmMgNgIIWKzYjrzChsK02");
 
-		PushService.setDefaultPushCallback(this, MainActivity.class);
+		//PushService.setDefaultPushCallback(this, MainActivity.class);
 		ParseInstallation.getCurrentInstallation().saveInBackground();
 	}
 
