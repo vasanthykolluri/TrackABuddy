@@ -10,6 +10,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.parse.Parse;
+import com.parse.ParseAnalytics;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.PushService;
@@ -54,7 +55,8 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 		Parse.initialize(this, "0x2akUUbhpwPM2eiE3rvXeFi7kGapSQufzBTluHk",
 				"Fj3d6aN04KvRIVZjPGsJmMgNgIIWKzYjrzChsK02");
 
-		//PushService.setDefaultPushCallback(this, MainActivity.class);
+		PushService.setDefaultPushCallback(this, MainActivity.class);
+		//ParseAnalytics.trackAppOpened(getIntent());
 		ParseInstallation.getCurrentInstallation().saveInBackground();
 	}
 

@@ -48,8 +48,8 @@ public class BuddyArrayAdapter extends ArrayAdapter<Buddy> {
 		ImageLoader imageLoader = ImageLoader.getInstance();
 
 		// Populate the data into the template view using the data object
-		imageLoader.displayImage(buddy.getImgUrl(),
-				ivProfileImage);
+		//imageLoader.displayImage(buddy.getImgUrl(),
+			//	ivProfileImage);
 		tvBuddyName.setText(buddy.getName());
 		tvCity.setText(buddy.getCity());
 		tvDistance.setText(buddy.getDistance().toString());
