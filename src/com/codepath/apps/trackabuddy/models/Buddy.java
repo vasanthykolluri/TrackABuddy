@@ -1,5 +1,7 @@
 package com.codepath.apps.trackabuddy.models;
 
+import java.util.Date;
+
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -15,7 +17,11 @@ public class Buddy extends ParseObject {
 		put("imgUrl", imgUrl);
 		//put("location", location);
 		put("city", city);
-		put("distance", "distance");
+		put("distance", distance);
+	}
+	
+	public String getId() {
+		return getString("objectId");
 	}
 	
 	public String getName() {
@@ -30,7 +36,17 @@ public class Buddy extends ParseObject {
 		return getString("city");
 	}
 	
-	public String getDistance() {
-		return getString("distance");
+	public Long getDistance() {
+		return getLong("distance");
+	}
+
+	public Date getCreatedAt() {
+		// TODO Auto-generated method stub
+		return getDate("createdAt");
+	}
+	
+	public Date getUpdatedAt() {
+		// TODO Auto-generated method stub
+		return getDate("updatedAt");
 	}
 }

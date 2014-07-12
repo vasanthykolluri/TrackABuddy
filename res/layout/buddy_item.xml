@@ -24,15 +24,14 @@
         android:id="@+id/tvCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvBuddyName"
-        android:layout_below="@+id/tvBuddyName"
+        android:layout_alignParentRight="true"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/tvDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tvBuddyName"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvCity" />
 
 </RelativeLayout>
