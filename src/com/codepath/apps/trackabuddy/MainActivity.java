@@ -13,9 +13,11 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
 import com.example.trackabuddy.R;
+import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
+import com.parse.SendCallback;
 
 public class MainActivity extends FragmentActivity {
 
@@ -62,9 +64,20 @@ public class MainActivity extends FragmentActivity {
 
 			// Push the notification to Android users
 			query.whereEqualTo("deviceType", "android");
+		//	query.whereEqualTo("device_id", "1234567890");    
+
 			push.setQuery(query);
-			push.setData(obj);
-			push.sendInBackground(); 
+			//push.setData(obj);
+			push.setChannel("Test Channel");
+			push.setMessage("Test Parse Message");
+			push.sendInBackground(new SendCallback() {
+				
+				@Override
+				public void done(ParseException arg0) {
+					Toast.makeText(getApplicationContext(), "Done with sending", Toast.LENGTH_LONG).show();
+				}
+				
+			}); 
 		} catch (JSONException e) {
 
 			e.printStackTrace();

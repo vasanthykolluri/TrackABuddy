@@ -57,6 +57,7 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 
 		PushService.setDefaultPushCallback(this, MainActivity.class);
 		//ParseAnalytics.trackAppOpened(getIntent());
+	    ParseInstallation.getCurrentInstallation().getInstallationId();
 		ParseInstallation.getCurrentInstallation().saveInBackground();
 	}
 
