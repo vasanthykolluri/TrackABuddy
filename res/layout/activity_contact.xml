@@ -12,5 +12,7 @@
         android:name="com.codepath.apps.trackabuddy.fragments.ContactListFragment"
         android:id="@+id/frContact"
         android:layout_weight="1.03"
+        android:title="Contacts"
+        android:icon="@drawable/ic_contacts"
         tools:layout="@layout/fragment_contactlist" />
 </LinearLayout>

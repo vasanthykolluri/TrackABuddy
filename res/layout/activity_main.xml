@@ -17,6 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
+        android:icon="@drawable/ic_track"
         tools:layout="@layout/fragment_buddylist" />
 
 </RelativeLayout>
