@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.codepath.apps.trackabuddy.BuddyArrayAdapter;
 import com.codepath.apps.trackabuddy.EndlessScrollListener;
@@ -14,9 +15,13 @@ import com.codepath.apps.trackabuddy.models.Buddy;
 import com.codepath.apps.trackabuddy.models.Profile;
 import com.codepath.apps.trackabuddy.networking.ParseClient;
 import com.codepath.apps.trackabuddy.R;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sadhanas on 7/14/14.
@@ -51,10 +56,29 @@ public class ContactListFragment extends Fragment{
 //            }
 //        });
 
-        //populateBuddyList();
+        populateProfileList();
 
         // Return the layout view
         return v;
+    }
+
+
+    public void populateProfileList() {
+        // Specify which class to query
+        ParseQuery<Profile> query = ParseQuery.getQuery(Profile.class);
+
+        query.findInBackground(new FindCallback<Profile>() {
+
+            @Override
+            public void done(List<Profile> profileList, ParseException e) {
+                if (e == null) {
+                    Toast.makeText(getActivity(), "ParseQuery Success", Toast.LENGTH_LONG);
+                    aProfile.clear();
+                    aProfile.addAll(profileList);
+                }
+            }
+        });
+
     }
 
 }

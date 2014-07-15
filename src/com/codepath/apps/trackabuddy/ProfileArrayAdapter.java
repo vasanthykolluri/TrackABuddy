@@ -1,7 +1,7 @@
 package com.codepath.apps.trackabuddy;
 import com.codepath.apps.trackabuddy.models.Buddy;
 import com.codepath.apps.trackabuddy.models.Profile;
-import com.example.trackabuddy.R;
+import com.codepath.apps.trackabuddy.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.content.Context;
@@ -47,8 +47,8 @@ public class ProfileArrayAdapter extends ArrayAdapter<Profile>{
 
         ivProfileImage.setImageResource(android.R.color.transparent);
 
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage(profile.getImgUrl(),ivProfileImage);
+//        ImageLoader imageLoader = ImageLoader.getInstance();
+//        imageLoader.displayImage(profile.getImgUrl(),ivProfileImage);
 
         // Populate the data into the template view using the data object
         //imageLoader.displayImage(buddy.getImgUrl(),
