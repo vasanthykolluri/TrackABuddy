@@ -15,7 +15,6 @@ public class Buddy extends ParseObject {
 	public Buddy(String name, String imgUrl, String city, Long distance) {
 		put("name", name);
 		put("imgUrl", imgUrl);
-		//put("location", location);
 		put("city", city);
 		put("distance", distance);
 	}

@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
+import android.view.Menu;
 import android.widget.Toast;
 
 import com.example.trackabuddy.R;
@@ -70,4 +71,9 @@ public class MainActivity extends FragmentActivity {
 			e.printStackTrace();
 		}
 	}
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.contacts_settings, menu);
+        return true;
+    }
 }

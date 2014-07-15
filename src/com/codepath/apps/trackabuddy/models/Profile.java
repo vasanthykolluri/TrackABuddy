@@ -10,9 +10,10 @@ public class Profile extends ParseObject {
 		super();
 	}
 
-	public Profile(String name, String imgUrl) {
+	public Profile(String name, String imgUrl, String phone) {
 		put("name", name);
 		put("imgUrl", imgUrl);
+        put("phone", phone );
 	}
 
 	public String getName() {
@@ -22,4 +23,6 @@ public class Profile extends ParseObject {
 	public String getImgUrl() {
 		return getString("imgUrl");
 	}
+
+    public String getPhone() { return getString("phone");}
 }
