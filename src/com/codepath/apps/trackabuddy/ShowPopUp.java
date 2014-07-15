@@ -21,11 +21,11 @@ public class ShowPopUp extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setTitle(getIntent().getStringExtra("customdata"));
 		Toast.makeText(this, "PopUP Yaaay!!!", Toast.LENGTH_LONG).show();
-//		setContentView(R.layout.popupdialog);
-//		ok = (Button)findViewById(R.id.popOkB);
-//		ok.setOnClickListener(this);
-//		cancel = (Button)findViewById(R.id.popCancelB);
-//		cancel.setOnClickListener(this);
+		setContentView(R.layout.popupdialog);
+		ok = (Button)findViewById(R.id.popOkB);
+		ok.setOnClickListener(this);
+		cancel = (Button)findViewById(R.id.popCancelB);
+		cancel.setOnClickListener(this);
 	}
 
 	@Override
