@@ -121,7 +121,8 @@ public class MainActivity extends FragmentActivity {
 			obj = new JSONObject();
 			obj.put("alert", "Hello " + tgtUserName + "," + TrackABuddyApp.userName + " here...");
 			obj.put("action", MyCustomReceiver.intentActionTrackReq);
-			obj.put("customdata", "Let's track each other. What say???");
+			obj.put("sender", TrackABuddyApp.userName);
+			obj.put("message", "Let's track each other. What say???");
 
 			ParsePush push = new ParsePush();
 			ParseQuery query = ParseInstallation.getQuery();

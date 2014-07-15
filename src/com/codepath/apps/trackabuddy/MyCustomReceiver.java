@@ -41,32 +41,27 @@ public class MyCustomReceiver extends BroadcastReceiver {
 								.getString("com.parse.Data"));
 
 						Log.d(TAG, "got action " + action + " on channel "
-								+ channel + " with:");
-						Iterator<String> itr = json.keys();
-						while (itr.hasNext()) {
-							String key = (String) itr.next();
-							if (key.equals("customdata")) {
-								// Handle push notification by invoking activity
-								// directly
-								Intent pupInt = new Intent(context,
-										HandleTrackReqActivity.class);
-								pupInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-								pupInt.putExtra("customdata",
-										json.getString(key));
-								context.getApplicationContext().startActivity(
-										pupInt);
+								+ channel);
+						String sender = json.getString("sender");
+						String message = json.getString("message");
 
-								// Handle push notification by sending a local
-								// broadcast
-								// to which the activity
-								// subscribes to
-								// LocalBroadcastManager.getInstance(context)
-								// .sendBroadcast(
-								// new Intent(intentActionTrackReq));
-							}
-							Log.d(TAG,
-									"..." + key + " => " + json.getString(key));
-						}
+						// Handle push notification by invoking activity
+						// directly
+						Intent pupInt = new Intent(context,
+								HandleTrackReqActivity.class);
+						pupInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						pupInt.putExtra("sender", sender);
+						pupInt.putExtra("message", message);
+						context.getApplicationContext().startActivity(pupInt);
+
+						// Handle push notification by sending a local
+						// broadcast
+						// to which the activity
+						// subscribes to
+						// LocalBroadcastManager.getInstance(context)
+						// .sendBroadcast(
+						// new Intent(intentActionTrackReq));
+
 					}
 				} else if (action.equals(intentActionTrackReqResp)) {
 					String channel = intent.getExtras().getString(
@@ -75,7 +70,7 @@ public class MyCustomReceiver extends BroadcastReceiver {
 							.getString("com.parse.Data"));
 
 					Log.d(TAG, "got action " + action + " on channel "
-							+ channel + " with:");
+							+ channel);
 					// Listen on a specific channel
 					if (channel.equals(TrackABuddyApp.userName)) {
 
@@ -85,8 +80,12 @@ public class MyCustomReceiver extends BroadcastReceiver {
 						// directly
 
 						if (acceptFlag == true) {
-							BuddyLocation buddyLocation = BuddyLocation.fromJson(json.getJSONObject("buddyLocation"));
-							parseClient.addBuddy(buddyLocation.getName(), buddyLocation.getImgUrl(), buddyLocation.getCity());
+							BuddyLocation buddyLocation = BuddyLocation
+									.fromJson(json
+											.getJSONObject("buddyLocation"));
+							parseClient.addBuddy(buddyLocation.getName(),
+									buddyLocation.getImgUrl(),
+									buddyLocation.getCity());
 							Toast.makeText(context.getApplicationContext(),
 									"Track Req Response - ACCEPTED",
 									Toast.LENGTH_LONG).show();
