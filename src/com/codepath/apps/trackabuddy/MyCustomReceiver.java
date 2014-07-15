@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class MyCustomReceiver extends BroadcastReceiver {
 	private static final String TAG = "MyCustomReceiver";
 
-	public static final String intentAction = "SEND_PUSH";
+	public static final String intentAction = "SEND_TRACKING_REQ";
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -37,16 +37,17 @@ public class MyCustomReceiver extends BroadcastReceiver {
 					while (itr.hasNext()) {
 						String key = (String) itr.next();
 						if (key.equals("customdata")) {
-							// Handle push notif by invoking activity directly
+							// Handle push notification by invoking activity directly
 							Intent pupInt = new Intent(context, ShowPopUp.class);
 							pupInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 							pupInt.putExtra("customdata", json.getString(key));
 							context.getApplicationContext().startActivity(
 									pupInt);
 
-							// Handle push notif by sending a local braoadcast
+							// Handle push notification by sending a local
+							// broadcast
 							// to which the activity
-							// subscirbes to
+							// subscribes to
 							LocalBroadcastManager.getInstance(context)
 									.sendBroadcast(new Intent(intentAction));
 						}

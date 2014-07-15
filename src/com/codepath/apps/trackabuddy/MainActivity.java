@@ -10,9 +10,9 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
+import android.view.View;
 import android.widget.Toast;
 
-import com.codepath.apps.trackabuddy.R;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
@@ -23,61 +23,68 @@ public class MainActivity extends FragmentActivity {
 
 	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
-        @Override
-        public void onReceive(Context context, Intent intent) {        	
-        	Toast.makeText(getApplicationContext(), "onReceive invoked!", Toast.LENGTH_LONG).show();
-        }
-    };
-    
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			Toast.makeText(getApplicationContext(), "onReceive invoked!",
+					Toast.LENGTH_LONG).show();
+		}
+	};
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		sendSamplePush();
 	}
-	
-	@Override
-    public void onPause() {
-        super.onPause();
 
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mBroadcastReceiver);
-    }
-    
 	@Override
-    public void onResume() {
-        super.onResume();
-        
-        LocalBroadcastManager.getInstance(this).registerReceiver(mBroadcastReceiver, new IntentFilter(MyCustomReceiver.intentAction));
-    }
-	
-	public void sendSamplePush() {
+	public void onPause() {
+		super.onPause();
+
+		LocalBroadcastManager.getInstance(this).unregisterReceiver(
+				mBroadcastReceiver);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		LocalBroadcastManager.getInstance(this).registerReceiver(
+				mBroadcastReceiver,
+				new IntentFilter(MyCustomReceiver.intentAction));
+	}
+
+	public void onTrackClick(View v) {
+		sendTrackingRequest();
+	}
+
+	private void sendTrackingRequest() {
 
 		JSONObject obj;
 		try {
 			obj = new JSONObject();
-			obj.put("alert", "hello!");
+			obj.put("alert", "Hello Buddy!");
 			obj.put("action", MyCustomReceiver.intentAction);
-			obj.put("customdata","My message");
+			obj.put("customdata", "Let's track each other buddy. What say???");
 
 			ParsePush push = new ParsePush();
 			ParseQuery query = ParseInstallation.getQuery();
 
 			// Push the notification to Android users
 			query.whereEqualTo("deviceType", "android");
-		//	query.whereEqualTo("device_id", "1234567890");    
+			// query.whereEqualTo("device_id", "1234567890");
 
 			push.setQuery(query);
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
-				
+
 				@Override
 				public void done(ParseException arg0) {
-					Toast.makeText(getApplicationContext(), "Done with sending", Toast.LENGTH_LONG).show();
+					// Toast.makeText(getApplicationContext(),
+					// "Done with sending", Toast.LENGTH_LONG).show();
 				}
-				
-			}); 
-		} catch (JSONException e) {
 
+			});
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
