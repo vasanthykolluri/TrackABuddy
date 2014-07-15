@@ -12,7 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
 
-import com.example.trackabuddy.R;
+import com.codepath.apps.trackabuddy.R;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
@@ -67,9 +67,7 @@ public class MainActivity extends FragmentActivity {
 		//	query.whereEqualTo("device_id", "1234567890");    
 
 			push.setQuery(query);
-			//push.setData(obj);
-			push.setChannel("Test Channel");
-			push.setMessage("Test Parse Message");
+			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 				
 				@Override

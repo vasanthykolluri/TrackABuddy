@@ -7,7 +7,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.trackabuddy.R;
+import com.codepath.apps.trackabuddy.R;
 
 public class ShowPopUp extends Activity implements OnClickListener {
 

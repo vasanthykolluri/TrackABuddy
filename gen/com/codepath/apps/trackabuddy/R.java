@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.example.trackabuddy;
+package com.codepath.apps.trackabuddy;
 
 public final class R {
     public static final class attr {
