@@ -20,9 +20,13 @@ import android.view.View;
 
 import android.widget.Toast;
 
+<<<<<<< HEAD
 
 import com.codepath.apps.trackabuddy.models.BuddyLocation;
 
+=======
+import com.codepath.apps.trackabuddy.models.BuddyLocation;
+>>>>>>> 8e806a1... Some fixes
 import com.parse.ParseException;
 
 import com.codepath.apps.trackabuddy.fragments.BuddyListFragment;
@@ -121,7 +125,9 @@ public class MainActivity extends FragmentActivity {
 			obj = new JSONObject();
 			obj.put("alert", "Hello " + tgtUserName + "," + TrackABuddyApp.userName + " here...");
 			obj.put("action", MyCustomReceiver.intentActionTrackReq);
-			obj.put("sender", TrackABuddyApp.userName);
+			BuddyLocation senderLocation = new BuddyLocation(
+					TrackABuddyApp.userName, "example.com", "San Jose");
+			obj.put("senderLocation", BuddyLocation.toJson(senderLocation));
 			obj.put("message", "Let's track each other. What say???");
 
 			ParsePush push = new ParsePush();
