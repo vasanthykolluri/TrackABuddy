@@ -59,7 +59,7 @@ public class MainActivity extends FragmentActivity {
 		} else if (v.getId() == R.id.btnTrackSadhana) {
 			sendTrackingRequest("sadhana");
 		} else if (v.getId() == R.id.btnTrackVasanthy) {
-			//sendTrackingRequest("vasanthy");
+			sendTrackingRequest("vasanthy");
 		}
 	}
 

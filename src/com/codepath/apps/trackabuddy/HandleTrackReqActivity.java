@@ -8,16 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.codepath.apps.trackabuddy.R;
+import com.codepath.apps.trackabuddy.models.BuddyLocation;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.SendCallback;
 
-public class ShowPopUp extends Activity implements OnClickListener {
+public class HandleTrackReqActivity extends Activity implements OnClickListener {
 
 	Button accept;
 	Button decline;
@@ -39,20 +38,22 @@ public class ShowPopUp extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		if (v.getId() == R.id.btnAccept) {
 			sendTrackingRequestResponse(true);
-		} else if (v.getId() == R.id.btnAccept) {
+		} else if (v.getId() == R.id.btnDecline) {
 			sendTrackingRequestResponse(false);
 		}
 		finish();
 	}
 
-	private void sendTrackingRequestResponse(boolean response) {
+	private void sendTrackingRequestResponse(boolean acceptFlag) {
 
 		JSONObject obj;
 		try {
 			obj = new JSONObject();
 			obj.put("alert", "Hello Buddy Response!");
 			obj.put("action", MyCustomReceiver.intentActionTrackReqResp);
-			obj.put("customdata", response);
+			obj.put("acceptFlag", acceptFlag);
+			BuddyLocation buddyLocation = new BuddyLocation(TrackABuddyApp.userName, "example.com", "San Jose");
+			obj.put("buddyLocation", BuddyLocation.toJson(buddyLocation));
 
 			ParsePush push = new ParsePush();
 			ParseQuery query = ParseInstallation.getQuery();

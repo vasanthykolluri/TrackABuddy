@@ -5,14 +5,15 @@ import java.util.Iterator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.codepath.apps.trackabuddy.networking.ParseClient;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.codepath.apps.trackabuddy.models.Buddy;
+import com.codepath.apps.trackabuddy.models.BuddyLocation;
+import com.codepath.apps.trackabuddy.networking.ParseClient;
 
 public class MyCustomReceiver extends BroadcastReceiver {
 	private static final String TAG = "MyCustomReceiver";
@@ -47,7 +48,7 @@ public class MyCustomReceiver extends BroadcastReceiver {
 								// Handle push notification by invoking activity
 								// directly
 								Intent pupInt = new Intent(context,
-										ShowPopUp.class);
+										HandleTrackReqActivity.class);
 								pupInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 								pupInt.putExtra("customdata",
 										json.getString(key));
@@ -76,39 +77,65 @@ public class MyCustomReceiver extends BroadcastReceiver {
 							+ channel + " with:");
 					// Listen on a specific channel
 					if (channel.equals(TrackABuddyApp.userName)) {
-						Iterator<String> itr = json.keys();
-						while (itr.hasNext()) {
-							String key = (String) itr.next();
-							if (key.equals("customdata")) {
-								// Handle push notification by invoking activity
-								// directly
 
-								boolean response = json
-										.getBoolean("customdata");
-								if (response == true) {
-									parseClient.addBuddy("newName", "newUrl",
-											"newCity", (long) 10);
-									Toast.makeText(
-											context.getApplicationContext(),
-											"Track Req Response - ACCEPTED",
-											Toast.LENGTH_LONG).show();
-									// Intent pupRespInt = new Intent(context,
-									// ShowPopUpResponse.class);
-									// pupRespInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-									// pupRespInt.putExtra("response",
-									// response);
-									// context.getApplicationContext().startActivity(
-									// pupRespInt);
-								} else {
-									Toast.makeText(
-											context.getApplicationContext(),
-											"Track Req Response - DECLINED",
-											Toast.LENGTH_LONG).show();
-								}
-							}
-							Log.d(TAG,
-									"..." + key + " => " + json.getString(key));
+						boolean acceptFlag = json.getBoolean("acceptFlag");
+
+						// Handle push notification by invoking activity
+						// directly
+
+						if (acceptFlag == true) {
+							BuddyLocation buddyLocation = BuddyLocation.fromJson(json.getJSONObject("buddyLocation"));
+							parseClient.addBuddy(buddyLocation.getName(), buddyLocation.getImgUrl(), buddyLocation.getCity());
+							Toast.makeText(context.getApplicationContext(),
+									"Track Req Response - ACCEPTED",
+									Toast.LENGTH_LONG).show();
+							// Intent pupRespInt = new Intent(context,
+							// ShowPopUpResponse.class);
+							// pupRespInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+							// pupRespInt.putExtra("response",
+							// response);
+							// context.getApplicationContext().startActivity(
+							// pupRespInt);
+						} else {
+							Toast.makeText(context.getApplicationContext(),
+									"Track Req Response - DECLINED",
+									Toast.LENGTH_LONG).show();
 						}
+
+						Iterator<String> itr = json.keys();
+						// while (itr.hasNext()) {
+						// String key = (String) itr.next();
+						// if (key.equals("acceptFlag")) {
+						// // Handle push notification by invoking activity
+						// // directly
+						//
+						// boolean acceptFlag = json
+						// .getBoolean("acceptFlag");
+						// if (acceptFlag == true) {
+						// parseClient.addBuddy("newName", "newUrl",
+						// "newCity", (long) 10);
+						// Toast.makeText(
+						// context.getApplicationContext(),
+						// "Track Req Response - ACCEPTED",
+						// Toast.LENGTH_LONG).show();
+						// // Intent pupRespInt = new Intent(context,
+						// // ShowPopUpResponse.class);
+						// //
+						// pupRespInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						// // pupRespInt.putExtra("response",
+						// // response);
+						// // context.getApplicationContext().startActivity(
+						// // pupRespInt);
+						// } else {
+						// Toast.makeText(
+						// context.getApplicationContext(),
+						// "Track Req Response - DECLINED",
+						// Toast.LENGTH_LONG).show();
+						// }
+						// }
+						// Log.d(TAG,
+						// "..." + key + " => " + json.getString(key));
+						// }
 					}
 				}
 			}

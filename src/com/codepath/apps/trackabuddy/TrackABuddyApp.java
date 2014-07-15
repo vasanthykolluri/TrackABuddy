@@ -60,6 +60,10 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 		ParseInstallation parseInstallation = ParseInstallation.getCurrentInstallation();
 
 		PushService.setDefaultPushCallback(this, MainActivity.class);
+
+		PushService.subscribe(context, TrackABuddyApp.userName, HandleTrackReqActivity.class);
+		PushService.subscribe(context, TrackABuddyApp.userName, ShowPopUpResponse.class);
+
 		//ParseAnalytics.trackAppOpened(getIntent());
 	    parseInstallation.getInstallationId();
 	    parseInstallation.put("username", userName);

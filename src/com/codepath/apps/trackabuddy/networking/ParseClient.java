@@ -43,10 +43,10 @@ public class ParseClient {
 		});
 	}
 
-	public void addBuddy(String name, String imgUrl, String city, Long distance) {
+	public void addBuddy(String name, String imgUrl, String city) {
 		// Specify which class to query
 		ParseQuery<Buddy> query = ParseQuery.getQuery(Buddy.class);
-		Buddy buddy = new Buddy(name, imgUrl, city, distance);
+		Buddy buddy = new Buddy(name, imgUrl, city);
 		buddy.saveInBackground();
 	}
 
