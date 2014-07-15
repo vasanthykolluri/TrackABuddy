@@ -50,7 +50,7 @@ public class MainActivity extends FragmentActivity {
 
 		LocalBroadcastManager.getInstance(this).registerReceiver(
 				mBroadcastReceiver,
-				new IntentFilter(MyCustomReceiver.intentAction));
+				new IntentFilter(MyCustomReceiver.intentActionTrackReq));
 	}
 
 	public void onTrackClick(View v) {
@@ -63,7 +63,7 @@ public class MainActivity extends FragmentActivity {
 		try {
 			obj = new JSONObject();
 			obj.put("alert", "Hello Buddy!");
-			obj.put("action", MyCustomReceiver.intentAction);
+			obj.put("action", MyCustomReceiver.intentActionTrackReq);
 			obj.put("customdata", "Let's track each other buddy. What say???");
 
 			ParsePush push = new ParsePush();

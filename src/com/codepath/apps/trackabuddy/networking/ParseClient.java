@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.codepath.apps.trackabuddy.models.Buddy;
 import com.parse.FindCallback;
@@ -40,6 +41,13 @@ public class ParseClient {
 				}
 			}
 		});
+	}
+
+	public void addBuddy(String name, String imgUrl, String city, Long distance) {
+		// Specify which class to query
+		ParseQuery<Buddy> query = ParseQuery.getQuery(Buddy.class);
+		Buddy buddy = new Buddy(name, imgUrl, city, distance);
+		buddy.saveInBackground();
 	}
 
 	

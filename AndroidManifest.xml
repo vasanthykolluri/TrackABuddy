@@ -39,13 +39,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.codepath.apps.trackabuddy.ShowPopUp"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
-        
+
         <service android:name="com.parse.PushService" />
 
         <receiver android:name="com.parse.ParseBroadcastReceiver" >
@@ -69,7 +68,8 @@
             android:name="com.codepath.apps.trackabuddy.MyCustomReceiver"
             android:exported="false" >
             <intent-filter>
-                <action android:name="SEND_TRACKING_REQ" />
+                <action android:name="TRACK_REQ" />
+                <action android:name="TRACK_REQ_RESP" />
             </intent-filter>
         </receiver>
     </application>

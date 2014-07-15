@@ -9,24 +9,33 @@
     tools:context="com.example.trackabuddy.MainActivity"
     tools:ignore="MergeRootFrame" >
 
+    <Button
+        android:id="@+id/btnTrackAkash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/btnTrackSadhana"
+        android:onClick="onTrackClick"
+        android:text="Track Akash" />
+
+    <Button
+        android:id="@+id/btnTrackSadhana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/buddyListFragment"
+        android:layout_marginTop="16dp"
+        android:onClick="onTrackClick"
+        android:text="Track Sadhana" />
+
     <fragment
         android:id="@+id/buddyListFragment"
         android:name="com.codepath.apps.trackabuddy.fragments.BuddyListFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
+        android:layout_alignLeft="@+id/btnTrackAkash"
+        android:layout_below="@+id/btnTrackAkash"
+        android:layout_marginTop="15dp"
         tools:layout="@layout/fragment_buddylist" />
-
-    <Button
-        android:id="@+id/btnTrack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buddyListFragment"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="79dp"
-        android:onClick="onTrackClick"
-        android:text="Send Tracking Request" />
-
+    
 </RelativeLayout>

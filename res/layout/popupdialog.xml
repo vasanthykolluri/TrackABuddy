@@ -43,23 +43,23 @@
             android:background="?android:attr/dividerVertical" 
             android:layout_centerHorizontal="true"/>
         <Button
-            android:id="@+id/popOkB"
+            android:id="@+id/btnAccept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@id/ViewColorPickerHelper"
             android:background="?android:attr/selectableItemBackground"
-            android:text="@android:string/cancel" 
+            android:text="Accept" 
             android:layout_alignParentBottom="true"/>
         <Button
-            android:id="@+id/popCancelB"
+            android:id="@+id/btnDecline"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:background="?android:attr/selectableItemBackground"
-            android:text="@android:string/ok" 
+            android:text="Decline" 
             android:layout_alignParentBottom="true" 
             android:layout_toRightOf="@id/ViewColorPickerHelper"/>
     </RelativeLayout>
