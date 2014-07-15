@@ -13,6 +13,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.View;
 import android.widget.Toast;
 
+import com.codepath.apps.trackabuddy.models.BuddyLocation;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
@@ -70,7 +71,9 @@ public class MainActivity extends FragmentActivity {
 			obj = new JSONObject();
 			obj.put("alert", "Hello " + tgtUserName + "," + TrackABuddyApp.userName + " here...");
 			obj.put("action", MyCustomReceiver.intentActionTrackReq);
-			obj.put("sender", TrackABuddyApp.userName);
+			BuddyLocation senderLocation = new BuddyLocation(
+					TrackABuddyApp.userName, "example.com", "San Jose");
+			obj.put("senderLocation", BuddyLocation.toJson(senderLocation));
 			obj.put("message", "Let's track each other. What say???");
 
 			ParsePush push = new ParsePush();
