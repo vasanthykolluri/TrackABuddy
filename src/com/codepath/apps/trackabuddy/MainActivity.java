@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.trackabuddy.R;
@@ -75,5 +76,10 @@ public class MainActivity extends FragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.contacts_settings, menu);
         return true;
+    }
+
+    public void onClickContacts(MenuItem menuItem){
+        Intent i = new Intent(this,ContactActivity.class);
+        startActivity(i);
     }
 }
