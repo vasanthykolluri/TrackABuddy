@@ -22,11 +22,14 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 	Button decline;
 
 	boolean click = true;
+	
+	private String sender;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setTitle(getIntent().getStringExtra("customdata"));
+		sender = getIntent().getStringExtra("sender");
+		setTitle(getIntent().getStringExtra("message"));
 		setContentView(R.layout.popupdialog);
 		accept = (Button) findViewById(R.id.btnAccept);
 		accept.setOnClickListener(this);
@@ -62,7 +65,7 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 			query.whereEqualTo("deviceType", "android");
 
 			push.setQuery(query);
-			push.setChannel(TrackABuddyApp.userName);
+			push.setChannel(sender);
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 
