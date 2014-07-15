@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.apps.trackabuddy.models.Buddy;
-import com.example.trackabuddy.R;
+import com.codepath.apps.trackabuddy.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class BuddyArrayAdapter extends ArrayAdapter<Buddy> {

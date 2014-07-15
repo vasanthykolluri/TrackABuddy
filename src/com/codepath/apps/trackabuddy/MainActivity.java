@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.codepath.apps.trackabuddy.fragments.BuddyListFragment;
 import com.codepath.apps.trackabuddy.fragments.BuddyMapFragment;
 import com.codepath.apps.trackabuddy.listeners.FragmentTabListener;
-import com.example.trackabuddy.R;
+import com.codepath.apps.trackabuddy.R;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
