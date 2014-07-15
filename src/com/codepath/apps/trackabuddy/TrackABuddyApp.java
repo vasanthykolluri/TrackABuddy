@@ -26,7 +26,9 @@ import com.parse.PushService;
  */
 public class TrackABuddyApp extends com.activeandroid.app.Application {
 	private static Context context;
-
+	// Customize this manually
+	public static final String userName = "vasanthy";
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -46,6 +48,7 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 	}
 
 	private void registerParse() {
+		
 		// Register your parse models
 		ParseObject.registerSubclass(Buddy.class);
 		ParseObject.registerSubclass(Profile.class);
@@ -54,11 +57,13 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 		// Add your initialization code here
 		Parse.initialize(this, "0x2akUUbhpwPM2eiE3rvXeFi7kGapSQufzBTluHk",
 				"Fj3d6aN04KvRIVZjPGsJmMgNgIIWKzYjrzChsK02");
+		ParseInstallation parseInstallation = ParseInstallation.getCurrentInstallation();
 
 		PushService.setDefaultPushCallback(this, MainActivity.class);
 		//ParseAnalytics.trackAppOpened(getIntent());
-	    ParseInstallation.getCurrentInstallation().getInstallationId();
-		ParseInstallation.getCurrentInstallation().saveInBackground();
+	    parseInstallation.getInstallationId();
+	    parseInstallation.put("username", userName);
+	    parseInstallation.saveInBackground();
 	}
 
 	public static RestClient getRestClient() {

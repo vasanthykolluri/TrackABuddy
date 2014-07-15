@@ -59,9 +59,9 @@ public class ShowPopUp extends Activity implements OnClickListener {
 
 			// Push the notification to Android users
 			query.whereEqualTo("deviceType", "android");
-			// query.whereEqualTo("device_id", "1234567890");
 
 			push.setQuery(query);
+			push.setChannel(TrackABuddyApp.userName);
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 

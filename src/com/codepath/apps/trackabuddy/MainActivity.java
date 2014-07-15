@@ -54,26 +54,33 @@ public class MainActivity extends FragmentActivity {
 	}
 
 	public void onTrackClick(View v) {
-		sendTrackingRequest();
+		if (v.getId() == R.id.btnTrackAkash) {
+			sendTrackingRequest("akash");
+		} else if (v.getId() == R.id.btnTrackSadhana) {
+			sendTrackingRequest("sadhana");
+		} else if (v.getId() == R.id.btnTrackVasanthy) {
+			//sendTrackingRequest("vasanthy");
+		}
 	}
 
-	private void sendTrackingRequest() {
+	private void sendTrackingRequest(String tgtUserName) {
 
 		JSONObject obj;
 		try {
 			obj = new JSONObject();
-			obj.put("alert", "Hello Buddy!");
+			obj.put("alert", "Hello " + tgtUserName + "," + TrackABuddyApp.userName + " here...");
 			obj.put("action", MyCustomReceiver.intentActionTrackReq);
-			obj.put("customdata", "Let's track each other buddy. What say???");
+			obj.put("customdata", "Let's track each other. What say???");
 
 			ParsePush push = new ParsePush();
 			ParseQuery query = ParseInstallation.getQuery();
 
 			// Push the notification to Android users
 			query.whereEqualTo("deviceType", "android");
-			// query.whereEqualTo("device_id", "1234567890");
-
+			// Push the notification to a specific user
+			//query.whereEqualTo("username", tgtUserName);
 			push.setQuery(query);
+			push.setChannel(tgtUserName);
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 
