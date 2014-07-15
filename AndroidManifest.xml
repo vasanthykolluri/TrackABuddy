@@ -23,7 +23,7 @@
     <application
         android:name="com.codepath.apps.trackabuddy.TrackABuddyApp"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_track"
         android:label="@string/app_name"
         android:theme="@style/MyCustomTheme"
         android:uiOptions="splitActionBarWhenNarrow" >
