@@ -20,4 +20,36 @@
         android:icon="@drawable/ic_track"
         tools:layout="@layout/fragment_buddylist" />
 
+    <Button
+        android:id="@+id/btnTrackAkash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:onClick="onTrackClick"
+        android:text="Track Akash"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/btnTrackSadhana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnTrackVasanthy"
+        android:layout_alignBottom="@+id/btnTrackVasanthy"
+        android:layout_toRightOf="@+id/btnTrackVasanthy"
+        android:onClick="onTrackClick"
+        android:text="Track Sadhana"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/btnTrackVasanthy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnTrackAkash"
+        android:layout_alignBottom="@+id/btnTrackAkash"
+        android:layout_toRightOf="@+id/btnTrackAkash"
+        android:onClick="onTrackClick"
+        android:text="Track Vasanthy"
+        android:textSize="10sp" />
+    
 </RelativeLayout>

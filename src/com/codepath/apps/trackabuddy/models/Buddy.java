@@ -2,7 +2,11 @@ package com.codepath.apps.trackabuddy.models;
 
 import java.util.Date;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.parse.ParseClassName;
+import com.parse.ParseFacebookUtils.Permissions.User;
 import com.parse.ParseObject;
 
 @ParseClassName("Buddy")
@@ -10,6 +14,13 @@ public class Buddy extends ParseObject {
 	//subclass should have a public default constructor
 	public Buddy() {
 		super();
+	}
+	
+	public Buddy(String name, String imgUrl, String city) {
+		put("name", name);
+		put("imgUrl", imgUrl);
+		//put("location", location);
+		put("city", city);
 	}
 	
 	public Buddy(String name, String imgUrl, String city, Long distance) {
@@ -48,4 +59,6 @@ public class Buddy extends ParseObject {
 		// TODO Auto-generated method stub
 		return getDate("updatedAt");
 	}
+	
+	
 }

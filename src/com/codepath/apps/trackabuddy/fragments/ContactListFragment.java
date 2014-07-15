@@ -13,7 +13,7 @@ import com.codepath.apps.trackabuddy.ProfileArrayAdapter;
 import com.codepath.apps.trackabuddy.models.Buddy;
 import com.codepath.apps.trackabuddy.models.Profile;
 import com.codepath.apps.trackabuddy.networking.ParseClient;
-import com.example.trackabuddy.R;
+import com.codepath.apps.trackabuddy.R;
 
 
 import java.util.ArrayList;

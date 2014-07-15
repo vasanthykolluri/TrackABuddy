@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.trackabuddy.R;
+import com.codepath.apps.trackabuddy.R;
 
 /**
  * Created by sadhanas on 7/14/14.
@@ -21,7 +21,7 @@ public class ContactActivity extends FragmentActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.tweet, menu);
+        getMenuInflater().inflate(R.menu.details_menu, menu);
         return true;
     }
 

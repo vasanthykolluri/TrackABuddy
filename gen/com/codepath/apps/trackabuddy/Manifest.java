@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.example.trackabuddy;
+package com.codepath.apps.trackabuddy;
 
 public final class Manifest {
     public static final class permission {
