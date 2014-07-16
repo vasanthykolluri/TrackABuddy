@@ -57,8 +57,8 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 		ParseObject.registerSubclass(Settings.class);
         // Sadhana Application wDlUTSUUuUK3BI81sFt8ANz0nkvEuZohKJkECRQW/ other rr65AmdeA3elDmJazu8kN12YtnSheCPk5u3RHtyC
 		// Add your initialization code here
-		Parse.initialize(this, "wDlUTSUUuUK3BI81sFt8ANz0nkvEuZohKJkECRQW",
-				"rr65AmdeA3elDmJazu8kN12YtnSheCPk5u3RHtyC");
+		Parse.initialize(this, "0x2akUUbhpwPM2eiE3rvXeFi7kGapSQufzBTluHk",
+				"Fj3d6aN04KvRIVZjPGsJmMgNgIIWKzYjrzChsK02");
 		ParseInstallation parseInstallation = ParseInstallation.getCurrentInstallation();
 
 		PushService.setDefaultPushCallback(this, MainActivity.class);

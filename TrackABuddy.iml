@@ -25,6 +25,16 @@
     <orderEntry type="library" name="android-async-http-1.4.3" level="application" />
     <orderEntry type="library" name="ActiveAndroid-3.1-adcddac4c58" level="application" />
     <orderEntry type="library" name="codepath-oauth-0.3.0" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/sdk/extras/google/google_play_services/libproject/google-play-services_lib/libs/google-play-services.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="google-play-services" level="project" />
   </component>
 </module>
 

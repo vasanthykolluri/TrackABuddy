@@ -14,7 +14,7 @@ public class ContactActivity extends FragmentActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.fragment_contactlist);
+        setContentView(R.layout.fragment_contactlist);
 
     }
     @Override

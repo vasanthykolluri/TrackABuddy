@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -9,16 +10,16 @@
     tools:context="com.example.trackabuddy.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <fragment
-        android:id="@+id/buddyListFragment"
-        android:name="com.codepath.apps.trackabuddy.fragments.BuddyListFragment"
+    <FrameLayout
+        android:id="@+id/flContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
         android:icon="@drawable/ic_track"
-        tools:layout="@layout/fragment_buddylist" />
+        tools:layout="@layout/fragment_buddylist" >
 
     <Button
         android:id="@+id/btnTrackAkash"
@@ -51,5 +52,10 @@
         android:onClick="onTrackClick"
         android:text="Track Vasanthy"
         android:textSize="10sp" />
+
+
+
+    </FrameLayout>
+
     
 </RelativeLayout>

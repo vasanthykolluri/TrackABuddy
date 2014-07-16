@@ -3,6 +3,8 @@ package com.codepath.apps.trackabuddy;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,14 +20,24 @@ import android.view.View;
 
 import android.widget.Toast;
 
+
 import com.codepath.apps.trackabuddy.models.BuddyLocation;
 import com.parse.ParseException;
+
+import com.codepath.apps.trackabuddy.fragments.BuddyListFragment;
+import com.codepath.apps.trackabuddy.fragments.BuddyMapFragment;
+import com.codepath.apps.trackabuddy.listeners.FragmentTabListener;
+import com.codepath.apps.trackabuddy.R;
+
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.SendCallback;
 
 public class MainActivity extends FragmentActivity {
+	
+	BuddyListFragment buddyListFragment;
+	BuddyMapFragment buddyMapFragment;
 
 	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
@@ -40,7 +52,40 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		setupTabs();
+		//sendSamplePush();
 	}
+	
+	private void setupTabs() {
+		ActionBar actionBar = getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionBar.setDisplayShowTitleEnabled(true);
+
+		Tab tab1 = actionBar
+			.newTab()
+			.setText("Map")
+			.setIcon(R.drawable.ic_launcher)
+			.setTag("BuddyMapFragment")
+			.setTabListener(
+				new FragmentTabListener<BuddyMapFragment>(R.id.flContainer, this, "first",
+								BuddyMapFragment.class));
+
+		actionBar.addTab(tab1);
+		actionBar.selectTab(tab1);
+
+		Tab tab2 = actionBar
+			.newTab()
+			.setText("Buddy List")
+			.setIcon(R.drawable.ic_launcher)
+			.setTag("BuddyListFragment")
+			.setTabListener(
+			    new FragmentTabListener<BuddyListFragment>(R.id.flContainer, this, "second",
+			    		BuddyListFragment.class));
+
+		actionBar.addTab(tab2);
+	}
+	
 
 	@Override
 	public void onPause() {

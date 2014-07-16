@@ -10,5 +10,6 @@ package com.codepath.apps.trackabuddy;
 public final class Manifest {
     public static final class permission {
         public static final String C2D_MESSAGE="com.codepath.apps.trackabuddy.permission.C2D_MESSAGE";
+        public static final String MAPS_RECEIVE="com.example.mapdemo.permission.MAPS_RECEIVE";
     }
 }

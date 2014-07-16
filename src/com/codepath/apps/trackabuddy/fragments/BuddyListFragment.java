@@ -16,6 +16,7 @@ import com.codepath.apps.trackabuddy.EndlessScrollListener;
 import com.codepath.apps.trackabuddy.R;
 import com.codepath.apps.trackabuddy.models.Buddy;
 import com.codepath.apps.trackabuddy.networking.ParseClient;
+import com.codepath.apps.trackabuddy.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
