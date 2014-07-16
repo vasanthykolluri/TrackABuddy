@@ -54,7 +54,6 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 
 		setupTabs();
-		//sendSamplePush();
 	}
 	
 	private void setupTabs() {
@@ -65,7 +64,7 @@ public class MainActivity extends FragmentActivity {
 		Tab tab1 = actionBar
 			.newTab()
 			.setText("Map")
-			.setIcon(R.drawable.ic_launcher)
+			.setIcon(R.drawable.ic_map)
 			.setTag("BuddyMapFragment")
 			.setTabListener(
 				new FragmentTabListener<BuddyMapFragment>(R.id.flContainer, this, "first",
@@ -77,7 +76,7 @@ public class MainActivity extends FragmentActivity {
 		Tab tab2 = actionBar
 			.newTab()
 			.setText("Buddy List")
-			.setIcon(R.drawable.ic_launcher)
+			.setIcon(R.drawable.ic_buddy)
 			.setTag("BuddyListFragment")
 			.setTabListener(
 			    new FragmentTabListener<BuddyListFragment>(R.id.flContainer, this, "second",

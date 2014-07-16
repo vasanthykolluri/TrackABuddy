@@ -21,14 +21,19 @@
         android:icon="@drawable/ic_track"
         tools:layout="@layout/fragment_buddylist" >
 
+
+
+    </FrameLayout>
+
     <Button
-        android:id="@+id/btnTrackAkash"
+        android:id="@+id/btnTrackVasanthy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp"
         android:onClick="onTrackClick"
-        android:text="Track Akash"
+        android:text="Track Vasanthy"
         android:textSize="10sp" />
 
     <Button
@@ -37,25 +42,21 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btnTrackVasanthy"
         android:layout_alignBottom="@+id/btnTrackVasanthy"
+        android:layout_marginLeft="19dp"
         android:layout_toRightOf="@+id/btnTrackVasanthy"
         android:onClick="onTrackClick"
         android:text="Track Sadhana"
         android:textSize="10sp" />
 
     <Button
-        android:id="@+id/btnTrackVasanthy"
+        android:id="@+id/btnTrackAkash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnTrackAkash"
-        android:layout_alignBottom="@+id/btnTrackAkash"
-        android:layout_toRightOf="@+id/btnTrackAkash"
+        android:layout_alignBaseline="@+id/btnTrackSadhana"
+        android:layout_alignBottom="@+id/btnTrackSadhana"
+        android:layout_alignParentRight="true"
         android:onClick="onTrackClick"
-        android:text="Track Vasanthy"
+        android:text="Track Akash"
         android:textSize="10sp" />
-
-
-
-    </FrameLayout>
-
     
 </RelativeLayout>

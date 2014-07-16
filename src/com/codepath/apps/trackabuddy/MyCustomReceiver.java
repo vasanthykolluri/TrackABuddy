@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.codepath.apps.trackabuddy.models.BuddyLocation;
 
@@ -18,6 +19,7 @@ public class MyCustomReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		Toast.makeText(context.getApplicationContext(), "MyCustomReceiver - onReceive", Toast.LENGTH_LONG).show();
 		try {
 			if (intent == null) {
 				Log.d(TAG, "Receiver intent null");

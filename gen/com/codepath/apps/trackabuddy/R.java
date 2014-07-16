@@ -399,17 +399,19 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_dark=0x7f020016;
         public static final int common_signin_btn_text_pressed_light=0x7f020017;
         public static final int ic_add=0x7f020018;
-        public static final int ic_contacts=0x7f020019;
-        public static final int ic_home=0x7f02001a;
-        public static final int ic_launcher=0x7f02001b;
-        public static final int ic_plusone_medium_off_client=0x7f02001c;
-        public static final int ic_plusone_small_off_client=0x7f02001d;
-        public static final int ic_plusone_standard_off_client=0x7f02001e;
-        public static final int ic_plusone_tall_off_client=0x7f02001f;
-        public static final int ic_settings=0x7f020020;
-        public static final int ic_track=0x7f020021;
-        public static final int powered_by_google_dark=0x7f020022;
-        public static final int powered_by_google_light=0x7f020023;
+        public static final int ic_buddy=0x7f020019;
+        public static final int ic_contacts=0x7f02001a;
+        public static final int ic_home=0x7f02001b;
+        public static final int ic_launcher=0x7f02001c;
+        public static final int ic_map=0x7f02001d;
+        public static final int ic_plusone_medium_off_client=0x7f02001e;
+        public static final int ic_plusone_small_off_client=0x7f02001f;
+        public static final int ic_plusone_standard_off_client=0x7f020020;
+        public static final int ic_plusone_tall_off_client=0x7f020021;
+        public static final int ic_settings=0x7f020022;
+        public static final int ic_track=0x7f020023;
+        public static final int powered_by_google_dark=0x7f020024;
+        public static final int powered_by_google_light=0x7f020025;
     }
     public static final class id {
         public static final int ViewColorPickerHelper=0x7f070027;
@@ -418,9 +420,9 @@ containing a value of this type.
         public static final int btnAccept=0x7f070028;
         public static final int btnDecline=0x7f070029;
         public static final int btnOK=0x7f070025;
-        public static final int btnTrackAkash=0x7f070016;
+        public static final int btnTrackAkash=0x7f070018;
         public static final int btnTrackSadhana=0x7f070017;
-        public static final int btnTrackVasanthy=0x7f070018;
+        public static final int btnTrackVasanthy=0x7f070016;
         public static final int button1=0x7f070020;
         public static final int button2=0x7f070022;
         public static final int button3=0x7f070021;
