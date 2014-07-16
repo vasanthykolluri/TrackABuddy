@@ -22,13 +22,14 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 	Button decline;
 
 	boolean click = true;
-	
-	private String sender;
+
+	private BuddyLocation senderLocation;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		sender = getIntent().getStringExtra("sender");
+		senderLocation = (BuddyLocation) getIntent().getSerializableExtra(
+				"senderLocation");
 		setTitle(getIntent().getStringExtra("message"));
 		setContentView(R.layout.popupdialog);
 		accept = (Button) findViewById(R.id.btnAccept);
@@ -55,17 +56,17 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 			obj.put("alert", "Hello Buddy Response!");
 			obj.put("action", MyCustomReceiver.intentActionTrackReqResp);
 			obj.put("acceptFlag", acceptFlag);
-			BuddyLocation buddyLocation = new BuddyLocation(TrackABuddyApp.userName, "example.com", "San Jose");
+			BuddyLocation buddyLocation = new BuddyLocation(
+					TrackABuddyApp.userName, "example.com", "San Jose");
 			obj.put("buddyLocation", BuddyLocation.toJson(buddyLocation));
 
 			ParsePush push = new ParsePush();
 			ParseQuery query = ParseInstallation.getQuery();
 
-			// Push the notification to Android users
+			// Send response on sender's channel
 			query.whereEqualTo("deviceType", "android");
-
 			push.setQuery(query);
-			push.setChannel(sender);
+			push.setChannel(senderLocation.getName());
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 
@@ -74,10 +75,18 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 					// Toast.makeText(getApplicationContext(),
 					// "Done with sending", Toast.LENGTH_LONG).show();
 				}
-
 			});
+
+			// Add sender as buddy to db
+			addSendertoDB();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void addSendertoDB() {
+		TrackABuddyApp.parseClient.addBuddy(senderLocation.getName(),
+				senderLocation.getImgUrl(), senderLocation.getCity());
+
 	}
 }
