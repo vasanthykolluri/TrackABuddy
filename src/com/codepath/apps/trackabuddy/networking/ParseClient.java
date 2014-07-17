@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -49,12 +48,6 @@ public class ParseClient {
 		ParseQuery<Buddy> query = ParseQuery.getQuery(Buddy.class);
 		Buddy buddy = new Buddy(name, imgUrl, city);
 		buddy.saveInBackground();
-	}
-
-	public static ParseClient getInstance(Class<ParseClient> class1,
-			Context context) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	

@@ -5,11 +5,12 @@ import android.content.Context;
 import com.codepath.apps.trackabuddy.models.Buddy;
 import com.codepath.apps.trackabuddy.models.Profile;
 import com.codepath.apps.trackabuddy.models.Settings;
-import com.codepath.apps.trackabuddy.networking.ParseClient;
+import com.codepath.apps.trackabuddy.networking.RestClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.parse.Parse;
+import com.parse.ParseAnalytics;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.PushService;
@@ -25,8 +26,6 @@ import com.parse.PushService;
  */
 public class TrackABuddyApp extends com.activeandroid.app.Application {
 	private static Context context;
-	public static ParseClient parseClient;
-	
 	// Customize this manually
 	public static final String userName = "sadhana";
 	
@@ -34,7 +33,6 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 	public void onCreate() {
 		super.onCreate();
 		TrackABuddyApp.context = this;
-		parseClient = new ParseClient();
 
 		// Create global configuration and initialize ImageLoader with this
 		// configuration
@@ -72,7 +70,8 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 	    parseInstallation.saveInBackground();
 	}
 
-	public ParseClient getParseClient() {
-		return parseClient;
+	public static RestClient getRestClient() {
+		return (RestClient) RestClient.getInstance(RestClient.class,
+				TrackABuddyApp.context);
 	}
 }

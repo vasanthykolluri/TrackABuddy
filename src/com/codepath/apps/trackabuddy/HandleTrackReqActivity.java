@@ -22,14 +22,13 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 	Button decline;
 
 	boolean click = true;
-
-	private BuddyLocation senderLocation;
+	
+	private String sender;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		senderLocation = (BuddyLocation) getIntent().getSerializableExtra(
-				"senderLocation");
+		sender = getIntent().getStringExtra("sender");
 		setTitle(getIntent().getStringExtra("message"));
 		setContentView(R.layout.popupdialog);
 		accept = (Button) findViewById(R.id.btnAccept);
@@ -56,17 +55,17 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 			obj.put("alert", "Hello Buddy Response!");
 			obj.put("action", MyCustomReceiver.intentActionTrackReqResp);
 			obj.put("acceptFlag", acceptFlag);
-			BuddyLocation buddyLocation = new BuddyLocation(
-					TrackABuddyApp.userName, "example.com", "San Jose");
+			BuddyLocation buddyLocation = new BuddyLocation(TrackABuddyApp.userName, "example.com", "San Jose");
 			obj.put("buddyLocation", BuddyLocation.toJson(buddyLocation));
 
 			ParsePush push = new ParsePush();
 			ParseQuery query = ParseInstallation.getQuery();
 
-			// Send response on sender's channel
+			// Push the notification to Android users
 			query.whereEqualTo("deviceType", "android");
+
 			push.setQuery(query);
-			push.setChannel(senderLocation.getName());
+			push.setChannel(sender);
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 
@@ -75,18 +74,10 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 					// Toast.makeText(getApplicationContext(),
 					// "Done with sending", Toast.LENGTH_LONG).show();
 				}
-			});
 
-			// Add sender as buddy to db
-			addSendertoDB();
+			});
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-	}
-
-	private void addSendertoDB() {
-		TrackABuddyApp.parseClient.addBuddy(senderLocation.getName(),
-				senderLocation.getImgUrl(), senderLocation.getCity());
-
 	}
 }

@@ -12,24 +12,24 @@ public class ShowPopUpResponse extends Activity implements OnClickListener {
 
 	TextView tvTrackReqResponse;
 	Button btnOK;
-	String buddyName;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		Boolean acceptFlag = getIntent().getBooleanExtra("acceptFlag", false);
-		buddyName = getIntent().getStringExtra("buddyName");
+		Boolean response = getIntent().getBooleanExtra("response", false);
 
+		Toast.makeText(this, "PopUp Resp" + response, Toast.LENGTH_SHORT)
+				.show();
 		setContentView(R.layout.popup_track_reqresponse);
 		tvTrackReqResponse = (TextView) findViewById(R.id.tvTrackReqResp);
 		btnOK = (Button) findViewById(R.id.btnOK);
-		if (acceptFlag == true) {
+		if (response == true) {
 			tvTrackReqResponse
-					.setText("Yayy!!! Your invite is accepted by " + buddyName);
+					.setText("Yayy!!! Your invite has been accepted.");
 		} else {
 			tvTrackReqResponse
-					.setText("Oops!!! Your invite is declined by " + buddyName);
+					.setText("Oops!!! Your invite has been declined.");
 		}
 	}
 

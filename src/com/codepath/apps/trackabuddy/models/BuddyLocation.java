@@ -1,14 +1,12 @@
 package com.codepath.apps.trackabuddy.models;
 
-import java.io.Serializable;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class BuddyLocation implements Serializable {
+import com.parse.ParseFacebookUtils.Permissions.User;
 
-	private static final long serialVersionUID = 6504849876860316528L;
-	
+public class BuddyLocation {
+
 	private String name;
 	private String imgUrl;
 	private String city;
