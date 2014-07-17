@@ -21,7 +21,7 @@
         android:name="com.codepath.apps.trackabuddy.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.parse.tutorials.pushnotifications.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.codepath.apps.trackabuddy.permission.C2D_MESSAGE" />
 
     <permission android:name="com.example.mapdemo.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
