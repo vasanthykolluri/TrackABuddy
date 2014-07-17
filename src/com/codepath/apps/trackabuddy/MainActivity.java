@@ -20,13 +20,7 @@ import android.view.View;
 
 import android.widget.Toast;
 
-<<<<<<< HEAD
-
 import com.codepath.apps.trackabuddy.models.BuddyLocation;
-
-=======
-import com.codepath.apps.trackabuddy.models.BuddyLocation;
->>>>>>> 8e806a1... Some fixes
 import com.parse.ParseException;
 
 import com.codepath.apps.trackabuddy.fragments.BuddyListFragment;
