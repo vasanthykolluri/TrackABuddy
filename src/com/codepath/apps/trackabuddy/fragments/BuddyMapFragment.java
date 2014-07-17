@@ -48,7 +48,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
         if(mapFragment!=null){
         	map = mapFragment.getMap();
         	if(map!=null){
-        		Toast.makeText(getActivity(), "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
+        		//Toast.makeText(getActivity(), "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
 				map.setMyLocationEnabled(true);
 				CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(37.423, -122.091), 17);
 				map.animateCamera(cameraUpdate);
@@ -110,14 +110,14 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	public void onConnected(Bundle arg0) {
 		Location location = mLocationClient.getLastLocation();
 		if (location != null) {
-			Toast.makeText(getActivity(), "GPS location was found!", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getActivity(), "GPS location was found!", Toast.LENGTH_SHORT).show();
 			LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
 			map.animateCamera(cameraUpdate);
 			map.addPolyline(new PolylineOptions().geodesic(false).add(latLng, new LatLng(37.423, -122.091)));
 		//	mLocationClient.requestLocationUpdates(mLocationRequest, this);
 		} else {
-			Toast.makeText(getActivity(), "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getActivity(), "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
 		}
 		
 	}

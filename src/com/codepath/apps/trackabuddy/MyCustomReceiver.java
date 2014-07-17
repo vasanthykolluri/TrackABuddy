@@ -19,7 +19,7 @@ public class MyCustomReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Toast.makeText(context.getApplicationContext(), "MyCustomReceiver - onReceive", Toast.LENGTH_LONG).show();
+		//Toast.makeText(context.getApplicationContext(), "MyCustomReceiver - onReceive", Toast.LENGTH_LONG).show();
 		try {
 			if (intent == null) {
 				Log.d(TAG, "Receiver intent null");
