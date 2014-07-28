@@ -75,7 +75,7 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 	    parseInstallation.saveInBackground();
 	}
 
-	public ParseClient getParseClient() {
+	public static ParseClient getParseClient() {
 		return parseClient;
 	}
 	

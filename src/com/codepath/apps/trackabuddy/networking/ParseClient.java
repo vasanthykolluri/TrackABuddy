@@ -1,17 +1,15 @@
 package com.codepath.apps.trackabuddy.networking;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.codepath.apps.trackabuddy.models.Buddy;
-import com.parse.FindCallback;
+import com.parse.CountCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 public class ParseClient {
@@ -44,11 +42,25 @@ public class ParseClient {
 		});
 	}
 
-	public void addBuddy(String name, String imgUrl, String city) {
-		// Specify which class to query
-		ParseQuery<Buddy> query = ParseQuery.getQuery(Buddy.class);
-		Buddy buddy = new Buddy("dummyUserId", "DummyBuddyId", name, imgUrl, city);
-		buddy.saveInBackground();
+	public void addBuddy(final String userId, final String buddyId,
+			final String buddyScreenName, final String imgUrl) {
+		ParseQuery<Buddy> count_query = ParseQuery.getQuery("Buddy");
+		count_query.countInBackground(new CountCallback() {
+			public void done(int count, ParseException e) {
+				if (e == null) {
+					if (count == 0) {
+						Buddy buddy = new Buddy(userId, buddyId,
+								buddyScreenName, imgUrl);
+						buddy.saveInBackground();
+					} else {
+						Log.d("error",
+								"Inserting a duplicate entry to Buddy table");
+					}
+				} else {
+					Log.d("error", "Error: " + e.getMessage());
+				}
+			}
+		});
 	}
 
 	public static ParseClient getInstance(Class<ParseClient> class1,
@@ -57,5 +69,4 @@ public class ParseClient {
 		return null;
 	}
 
-	
 }
