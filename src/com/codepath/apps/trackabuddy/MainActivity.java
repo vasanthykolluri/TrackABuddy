@@ -1,8 +1,5 @@
 package com.codepath.apps.trackabuddy;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.content.BroadcastReceiver;
@@ -20,14 +17,8 @@ import android.widget.Toast;
 import com.codepath.apps.trackabuddy.fragments.BuddyListFragment;
 import com.codepath.apps.trackabuddy.fragments.BuddyMapFragment;
 import com.codepath.apps.trackabuddy.listeners.FragmentTabListener;
-import com.codepath.apps.trackabuddy.models.BuddyLocation;
 import com.codepath.apps.trackabuddy.networking.MyCustomReceiver;
 import com.codepath.apps.trackabuddy.networking.MyCustomSender;
-import com.parse.ParseException;
-import com.parse.ParseInstallation;
-import com.parse.ParsePush;
-import com.parse.ParseQuery;
-import com.parse.SendCallback;
 
 public class MainActivity extends FragmentActivity {
 
@@ -100,48 +91,11 @@ public class MainActivity extends FragmentActivity {
 
 	public void onTrackClick(View v) {
 		if (v.getId() == R.id.btnTrackAkash) {
-			MyCustomSender.sendTrackReq("vasanthykolluri", "Vasanthy", "akashagarwal", "Akash");
+			MyCustomSender.sendTrackReq("vasanthykolluri", "Vasanthy", "akashagarwal");
 		} else if (v.getId() == R.id.btnTrackSadhana) {
-			MyCustomSender.sendTrackReq("vasanthykolluri", "Vasanthy", "sadhanasahas", "Sadhana");
+			MyCustomSender.sendTrackReq("vasanthykolluri", "Vasanthy", "sadhanasahas");
 		} else if (v.getId() == R.id.btnTrackVasanthy) {
-			MyCustomSender.sendTrackReq("vasanthykolluri", "Vasanthy", "vasanthykolluri", "Vasanthy");
-		}
-	}
-
-	private void sendTrackingRequest(String tgtUserName) {
-
-		JSONObject obj;
-		try {
-			obj = new JSONObject();
-			obj.put("alert", "Hello " + tgtUserName + ","
-					+ TrackABuddyApp.userName + " here...");
-			obj.put("action", MyCustomReceiver.intentActionTrackReq);
-			BuddyLocation senderLocation = new BuddyLocation(
-					TrackABuddyApp.userName, "example.com", "San Jose");
-			obj.put("senderLocation", BuddyLocation.toJson(senderLocation));
-			obj.put("message", "Let's track each other. What say???");
-
-			ParsePush push = new ParsePush();
-			ParseQuery query = ParseInstallation.getQuery();
-
-			// Push the notification to Android users
-			query.whereEqualTo("deviceType", "android");
-			// Push the notification to a specific user
-			// query.whereEqualTo("username", tgtUserName);
-			push.setQuery(query);
-			push.setChannel(tgtUserName);
-			push.setData(obj);
-			push.sendInBackground(new SendCallback() {
-
-				@Override
-				public void done(ParseException arg0) {
-					// Toast.makeText(getApplicationContext(),
-					// "Done with sending", Toast.LENGTH_LONG).show();
-				}
-
-			});
-		} catch (JSONException e) {
-			e.printStackTrace();
+			MyCustomSender.sendTrackReq("vasanthykolluri", "Vasanthy", "vasanthykolluri");
 		}
 	}
 

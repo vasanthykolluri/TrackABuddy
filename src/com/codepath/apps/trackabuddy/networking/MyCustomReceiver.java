@@ -22,7 +22,8 @@ public class MyCustomReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		//Toast.makeText(context.getApplicationContext(), "MyCustomReceiver - onReceive", Toast.LENGTH_LONG).show();
+		// Toast.makeText(context.getApplicationContext(),
+		// "MyCustomReceiver - onReceive", Toast.LENGTH_LONG).show();
 		try {
 			if (intent == null) {
 				Log.d(TAG, "Receiver intent null");
@@ -32,16 +33,17 @@ public class MyCustomReceiver extends BroadcastReceiver {
 				if (action.equals(intentActionTrackReq)) {
 					String channel = intent.getExtras().getString(
 							"com.parse.Channel");
-					
+
 					// Filter on user's channel
-					if (channel.equals(MyUtils.getChannelName(TrackABuddyApp.userId))) {
+					if (channel.equals(MyUtils
+							.getChannelName(TrackABuddyApp.userId))) {
 						JSONObject json = new JSONObject(intent.getExtras()
 								.getString("com.parse.Data"));
 
 						Log.d(TAG, "got action " + action + " on channel "
 								+ channel);
-						TrackReq trackReq = TrackReq
-								.fromJson(json.getJSONObject("trackReq"));
+						TrackReq trackReq = TrackReq.fromJson(json
+								.getJSONObject("trackReq"));
 
 						// Handle push notification by invoking activity
 						// directly
@@ -69,30 +71,40 @@ public class MyCustomReceiver extends BroadcastReceiver {
 					Log.d(TAG, "got action " + action + " on channel "
 							+ channel);
 					// Filter on user's channel
-					if (channel.equals(MyUtils.getChannelName(TrackABuddyApp.userId))) {
+					if (channel.equals(MyUtils
+							.getChannelName(TrackABuddyApp.userId))) {
 
-						TrackReqResp trackReqResp = TrackReqResp
-								.fromJson(json.getJSONObject("trackReqResp"));
+						TrackReqResp trackReqResp = TrackReqResp.fromJson(json
+								.getJSONObject("trackReqResp"));
 
 						// Handle push notification by invoking activity
 						// directly
 
-//						if (acceptFlag == true) {
-//							// Add buddy to db
-//							TrackABuddyApp.parseClient.addBuddy(
-//									buddyLocation.getName(),
-//									buddyLocation.getImgUrl(),
-//									buddyLocation.getCity());
-//						}
+						// if (acceptFlag == true) {
+						// // Add buddy to db
+						// TrackABuddyApp.parseClient.addBuddy(
+						// buddyLocation.getName(),
+						// buddyLocation.getImgUrl(),
+						// buddyLocation.getCity());
+						// }
 
 						Intent pupRespInt = new Intent(context,
 								ShowTrackReqResp.class);
 						pupRespInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						pupRespInt.putExtra("response", trackReqResp.getResponse());
+						pupRespInt.putExtra("response",
+								trackReqResp.getResponse());
 						pupRespInt.putExtra("buddyName",
 								trackReqResp.getSenderName());
 						context.getApplicationContext().startActivity(
 								pupRespInt);
+
+						if (trackReqResp.getResponse() == true) {
+							TrackABuddyApp.getParseClient().addBuddy(
+									trackReqResp.getReceiverId(),
+									trackReqResp.getSenderId(),
+									trackReqResp.getSenderName(),
+									trackReqResp.getSenderImgUrl());
+						}
 					}
 				}
 			}

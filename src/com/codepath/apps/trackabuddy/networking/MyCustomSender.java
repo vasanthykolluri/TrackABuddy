@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.codepath.apps.trackabuddy.TrackABuddyApp;
 import com.codepath.apps.trackabuddy.models.TrackReq;
 import com.codepath.apps.trackabuddy.models.TrackReqResp;
 import com.parse.ParseException;
@@ -17,17 +18,16 @@ public class MyCustomSender {
 	private static final String TAG = "MyCustomSender";
 
 	public static void sendTrackReq(String senderId, String senderName,
-			String receiverId, String receiverName) {
+			String receiverId) {
 
 		JSONObject obj;
 		try {
 			obj = new JSONObject();
-			
+
 			obj.put("action", MyCustomReceiver.intentActionTrackReq);
-			obj.put("alert", "Hello " + receiverName + "," + senderName
+			obj.put("alert", "Hello there! " + senderName
 					+ " here...");
-			TrackReq trackReq = new TrackReq(senderId, senderName,
-					receiverId, receiverName);
+			TrackReq trackReq = new TrackReq(senderId, senderName, "dummyImgUrl", receiverId);
 			obj.put("trackReq", TrackReq.toJson(trackReq));
 
 			ParsePush push = new ParsePush();
@@ -36,7 +36,7 @@ public class MyCustomSender {
 			// Push the notification to Android users
 			query.whereEqualTo("deviceType", "android");
 			push.setQuery(query);
-			
+
 			// Push the notification to a specific user's channel
 			push.setChannel(MyUtils.getChannelName(receiverId));
 			push.setData(obj);
@@ -62,17 +62,16 @@ public class MyCustomSender {
 			obj = new JSONObject();
 			obj.put("action", MyCustomReceiver.intentActionTrackReqResp);
 			TrackReqResp trackReqResp = new TrackReqResp(
-					trackReq.getReceiverId(), trackReq.getReceiverName(),
-					trackReq.getSenderId(), trackReq.getSenderName(),
+					TrackABuddyApp.userId, TrackABuddyApp.userName, "dummyImgUrl",
+					trackReq.getSenderId(),
 					response);
 			obj.put("alert",
 					"TrackABuddy! Response from " + trackReqResp.getSenderName());
 			obj.put("trackReqResp", TrackReqResp.toJson(trackReqResp));
 
-			Log.d(TAG, "Resp Sender" + trackReqResp.getSenderId() + " "
+			Log.d(TAG, "Resp Sender " + trackReqResp.getSenderId() + " "
 					+ trackReqResp.getSenderName());
-			Log.d(TAG, "Resp rcvr" + trackReqResp.getReceiverId() + " "
-					+ trackReqResp.getReceiverName());
+			Log.d(TAG, "Resp Rcvr " + trackReqResp.getReceiverId());
 
 			ParsePush push = new ParsePush();
 			ParseQuery query = ParseInstallation.getQuery();

@@ -11,19 +11,19 @@ public class TrackReq implements Serializable {
 
 	private String senderId;
 	private String senderName;
+	private String senderImgUrl;
 	private String receiverId;
-	private String receiverName;
 
 	public TrackReq() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TrackReq(String senderId, String senderName, String receiverId,
-			String receiverName) {
+	public TrackReq(String senderId, String senderName, String senderImgUrl,
+			String receiverId) {
 		this.senderId = senderId;
 		this.senderName = senderName;
+		this.senderImgUrl = senderImgUrl;
 		this.receiverId = receiverId;
-		this.receiverName = receiverName;
 	}
 
 	public String getSenderId() {
@@ -34,12 +34,12 @@ public class TrackReq implements Serializable {
 		return senderName;
 	}
 
-	public String getReceiverId() {
-		return receiverId;
+	public String getSenderImgUrl() {
+		return senderImgUrl;
 	}
 
-	public String getReceiverName() {
-		return receiverName;
+	public String getReceiverId() {
+		return receiverId;
 	}
 
 	public static TrackReq fromJson(JSONObject jsonObject) {
@@ -48,8 +48,8 @@ public class TrackReq implements Serializable {
 		try {
 			trackReq.senderId = jsonObject.getString("senderId");
 			trackReq.senderName = jsonObject.getString("senderName");
+			trackReq.senderImgUrl = jsonObject.getString("senderImgUrl");
 			trackReq.receiverId = jsonObject.getString("receiverId");
-			trackReq.receiverName = jsonObject.getString("receiverName");
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
@@ -63,8 +63,8 @@ public class TrackReq implements Serializable {
 		try {
 			jsonObject.put("senderId", trackReq.senderId);
 			jsonObject.put("senderName", trackReq.senderName);
+			jsonObject.put("senderImgUrl", trackReq.senderImgUrl);
 			jsonObject.put("receiverId", trackReq.receiverId);
-			jsonObject.put("receiverName", trackReq.receiverName);
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
@@ -72,4 +72,5 @@ public class TrackReq implements Serializable {
 
 		return jsonObject;
 	}
+
 }

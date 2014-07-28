@@ -26,13 +26,13 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 		setContentView(R.layout.popup_trackreq);
 		tvTrackReq = (TextView) findViewById(R.id.tvTrackReq);
 
-		trackReq = (TrackReq) getIntent().getSerializableExtra(
-				"trackReq");
-		String message = trackReq.getSenderName() + " wants to track your location!";
-		
+		trackReq = (TrackReq) getIntent().getSerializableExtra("trackReq");
+		String message = trackReq.getSenderName()
+				+ " wants to track your location!";
+
 		setTitle("TrackABuddy!");
 		tvTrackReq.setText(message);
-		
+
 		accept = (Button) findViewById(R.id.btnAccept);
 		accept.setOnClickListener(this);
 		decline = (Button) findViewById(R.id.btnDecline);
@@ -43,9 +43,11 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 	public void onClick(View v) {
 		if (v.getId() == R.id.btnAccept) {
 			MyCustomSender.sendTrackReqResp(trackReq, true);
-			
-			// Add user to group in Parse db
-			//TrackABuddyApp.getParseClient().addBuddy(groupAddReq.getReceiverId(), groupAddReq.getGroupId());
+
+			// Add buddy to Parse db
+			TrackABuddyApp.getParseClient().addBuddy(TrackABuddyApp.userId,
+					trackReq.getSenderId(), trackReq.getSenderName(),
+					"dummyImgUrl");
 		} else if (v.getId() == R.id.btnDecline) {
 			MyCustomSender.sendTrackReqResp(trackReq, false);
 		}

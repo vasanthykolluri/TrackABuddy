@@ -2,11 +2,7 @@ package com.codepath.apps.trackabuddy.models;
 
 import java.util.Date;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.parse.ParseClassName;
-import com.parse.ParseFacebookUtils.Permissions.User;
 import com.parse.ParseObject;
 
 @ParseClassName("Buddy")
@@ -17,24 +13,11 @@ public class Buddy extends ParseObject {
 	}
 
 	public Buddy(String userId, String buddyId, String buddyScreenName,
-			String imgUrl, String city) {
+			String imgUrl) {
 		put("userId", userId);
 		put("buddyId", buddyId);
 		put("buddyScreenName", buddyScreenName);
 		put("imgUrl", imgUrl);
-		// put("location", location);
-		put("city", city);
-	}
-
-	public Buddy(String userId, String buddyId, String buddyScreenName,
-			String imgUrl, String city, Long distance) {
-		put("userId", userId);
-		put("buddyId", buddyId);
-		put("buddyScreenName", buddyScreenName);
-		put("imgUrl", imgUrl);
-		// put("location", location);
-		put("city", city);
-		put("distance", distance);
 	}
 
 	public String getObjectId() {
@@ -57,10 +40,22 @@ public class Buddy extends ParseObject {
 		return getString("imgUrl");
 	}
 
+	public Long getLatitude() {
+		return getLong("latitude");
+	}
+	
+	public Long getLongitude() {
+		return getLong("longitude");
+	}
+	
 	public String getCity() {
 		return getString("city");
 	}
 
+	public String getCountry() {
+		return getString("country");
+	}
+	
 	public Long getDistance() {
 		return getLong("distance");
 	}

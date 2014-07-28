@@ -11,6 +11,7 @@ public class TrackReqResp implements Serializable {
 
 	private String senderId;
 	private String senderName;
+	private String senderImgUrl;
 	private String receiverId;
 	private String receiverName;
 	private Boolean response;
@@ -19,12 +20,12 @@ public class TrackReqResp implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TrackReqResp(String senderId, String senderName,
-			String receiverId, String receiverName, Boolean response) {
+	public TrackReqResp(String senderId, String senderName, String senderImgUrl,
+			String receiverId, Boolean response) {
 		this.senderId = senderId;
 		this.senderName = senderName;
+		this.senderImgUrl = senderImgUrl;
 		this.receiverId = receiverId;
-		this.receiverName = receiverName;
 		this.response = response;
 	}
 
@@ -36,12 +37,12 @@ public class TrackReqResp implements Serializable {
 		return senderName;
 	}
 
+	public String getSenderImgUrl() {
+		return senderImgUrl;
+	}
+	
 	public String getReceiverId() {
 		return receiverId;
-	}
-
-	public String getReceiverName() {
-		return receiverName;
 	}
 
 	public Boolean getResponse() {
@@ -54,8 +55,8 @@ public class TrackReqResp implements Serializable {
 		try {
 			trackReqResp.senderId = jsonObject.getString("senderId");
 			trackReqResp.senderName = jsonObject.getString("senderName");
+			trackReqResp.senderImgUrl = jsonObject.getString("senderImgUrl");
 			trackReqResp.receiverId = jsonObject.getString("receiverId");
-			trackReqResp.receiverName = jsonObject.getString("receiverName");
 			trackReqResp.response = jsonObject.getBoolean("response");
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -71,8 +72,8 @@ public class TrackReqResp implements Serializable {
 		try {
 			jsonObject.put("senderId", trackReqResp.senderId);
 			jsonObject.put("senderName", trackReqResp.senderName);
+			jsonObject.put("senderImgUrl", trackReqResp.senderImgUrl);
 			jsonObject.put("receiverId", trackReqResp.receiverId);
-			jsonObject.put("receiverName", trackReqResp.receiverName);
 			jsonObject.put("response", trackReqResp.response);
 		} catch (JSONException e) {
 			e.printStackTrace();
