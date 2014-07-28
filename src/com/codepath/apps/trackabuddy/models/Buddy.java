@@ -13,11 +13,12 @@ public class Buddy extends ParseObject {
 	}
 
 	public Buddy(String userId, String buddyId, String buddyScreenName,
-			String imgUrl) {
+			String imgUrl, Boolean trackingNow) {
 		put("userId", userId);
 		put("buddyId", buddyId);
 		put("buddyScreenName", buddyScreenName);
 		put("imgUrl", imgUrl);
+		put("trackingNow", trackingNow);
 	}
 
 	public String getObjectId() {
@@ -40,6 +41,10 @@ public class Buddy extends ParseObject {
 		return getString("imgUrl");
 	}
 
+	public Boolean getTrackingNow() {
+		return getBoolean("trackingNow");
+	}
+	
 	public Long getLatitude() {
 		return getLong("latitude");
 	}

@@ -43,14 +43,14 @@ public class ParseClient {
 	}
 
 	public void addBuddy(final String userId, final String buddyId,
-			final String buddyScreenName, final String imgUrl) {
+			final String buddyScreenName, final String imgUrl, final Boolean trackingNow) {
 		ParseQuery<Buddy> count_query = ParseQuery.getQuery("Buddy");
 		count_query.countInBackground(new CountCallback() {
 			public void done(int count, ParseException e) {
 				if (e == null) {
 					if (count == 0) {
 						Buddy buddy = new Buddy(userId, buddyId,
-								buddyScreenName, imgUrl);
+								buddyScreenName, imgUrl, trackingNow);
 						buddy.saveInBackground();
 					} else {
 						Log.d("error",

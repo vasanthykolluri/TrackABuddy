@@ -47,7 +47,7 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 			// Add buddy to Parse db
 			TrackABuddyApp.getParseClient().addBuddy(TrackABuddyApp.userId,
 					trackReq.getSenderId(), trackReq.getSenderName(),
-					"dummyImgUrl");
+					"dummyImgUrl", true);
 		} else if (v.getId() == R.id.btnDecline) {
 			MyCustomSender.sendTrackReqResp(trackReq, false);
 		}
