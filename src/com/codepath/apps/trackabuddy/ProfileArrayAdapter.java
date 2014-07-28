@@ -53,7 +53,7 @@ public class ProfileArrayAdapter extends ArrayAdapter<Profile>{
         // Populate the data into the template view using the data object
         //imageLoader.displayImage(buddy.getImgUrl(),
         //	ivProfileImage);
-        tvName.setText(profile.getName());
+        tvName.setText(profile.getScreenName());
         tvPhone.setText(profile.getPhone());
 
 

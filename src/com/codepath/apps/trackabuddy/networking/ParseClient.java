@@ -23,7 +23,7 @@ public class ParseClient {
 			public void done(Buddy item, ParseException e) {
 				if (e == null) {
 					// Access data using the `get` methods for the object
-					String name = item.getName();
+					String name = item.getBuddyScreenName();
 					String imgUrl = item.getImgUrl();
 					String city = item.getCity();
 					Long distance = item.getDistance();
@@ -47,7 +47,7 @@ public class ParseClient {
 	public void addBuddy(String name, String imgUrl, String city) {
 		// Specify which class to query
 		ParseQuery<Buddy> query = ParseQuery.getQuery(Buddy.class);
-		Buddy buddy = new Buddy(name, imgUrl, city);
+		Buddy buddy = new Buddy("dummyUserId", "DummyBuddyId", name, imgUrl, city);
 		buddy.saveInBackground();
 	}
 

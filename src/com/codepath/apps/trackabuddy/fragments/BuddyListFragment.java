@@ -16,7 +16,6 @@ import com.codepath.apps.trackabuddy.EndlessScrollListener;
 import com.codepath.apps.trackabuddy.R;
 import com.codepath.apps.trackabuddy.models.Buddy;
 import com.codepath.apps.trackabuddy.networking.ParseClient;
-import com.codepath.apps.trackabuddy.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -40,19 +39,21 @@ public class BuddyListFragment extends Fragment {
 		// Inflate the layout
 		View v = inflater
 				.inflate(R.layout.fragment_buddylist, container, false);
+
 		lvBuddies = (ListView) v.findViewById(R.id.lvBuddies);
 		lvBuddies.setAdapter(aBuddies);
 
 		lvBuddies.setOnScrollListener(new EndlessScrollListener() {
 			@Override
 			public void onLoadMore(int page, int totalItemsCount) {
-				String lastName = buddies.get(totalItemsCount - 1).getName();
+				String lastName = buddies.get(totalItemsCount - 1).getBuddyScreenName();
 				customLoadMoreDataFromApi(lastName);
 			}
 		});
 
 		populateBuddyList();
-		
+		Toast.makeText(getActivity(), "Returning view", Toast.LENGTH_SHORT).show();
+
 		// Return the layout view
 		return v;
 	}
@@ -65,12 +66,16 @@ public class BuddyListFragment extends Fragment {
 
 			@Override
 			public void done(List<Buddy> buddyList, ParseException e) {
+				Toast.makeText(getActivity(), "Done", Toast.LENGTH_SHORT).show();
 				if (e == null) {
-					Toast.makeText(getActivity(), "ParseQuery Success", Toast.LENGTH_LONG);
 					aBuddies.clear();
 					aBuddies.addAll(buddyList);
+				} else {
+					e.printStackTrace();
+
 				}
 			}
+
 		});
 
 	}

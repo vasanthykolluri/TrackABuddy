@@ -1,20 +1,14 @@
 package com.codepath.apps.trackabuddy;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
-import com.codepath.apps.trackabuddy.models.BuddyLocation;
-import com.parse.ParseException;
-import com.parse.ParseInstallation;
-import com.parse.ParsePush;
-import com.parse.ParseQuery;
-import com.parse.SendCallback;
+import com.codepath.apps.trackabuddy.models.TrackReq;
+import com.codepath.apps.trackabuddy.networking.MyCustomSender;
 
 public class HandleTrackReqActivity extends Activity implements OnClickListener {
 
@@ -23,15 +17,22 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 
 	boolean click = true;
 
-	private BuddyLocation senderLocation;
+	private TrackReq trackReq;
+	private TextView tvTrackReq;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		senderLocation = (BuddyLocation) getIntent().getSerializableExtra(
-				"senderLocation");
-		setTitle(getIntent().getStringExtra("message"));
-		setContentView(R.layout.popupdialog);
+		setContentView(R.layout.popup_trackreq);
+		tvTrackReq = (TextView) findViewById(R.id.tvTrackReq);
+
+		trackReq = (TrackReq) getIntent().getSerializableExtra(
+				"trackReq");
+		String message = trackReq.getSenderName() + " wants to track your location!";
+		
+		setTitle("TrackABuddy!");
+		tvTrackReq.setText(message);
+		
 		accept = (Button) findViewById(R.id.btnAccept);
 		accept.setOnClickListener(this);
 		decline = (Button) findViewById(R.id.btnDecline);
@@ -41,52 +42,13 @@ public class HandleTrackReqActivity extends Activity implements OnClickListener 
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.btnAccept) {
-			sendTrackingRequestResponse(true);
+			MyCustomSender.sendTrackReqResp(trackReq, true);
+			
+			// Add user to group in Parse db
+			//TrackABuddyApp.getParseClient().addBuddy(groupAddReq.getReceiverId(), groupAddReq.getGroupId());
 		} else if (v.getId() == R.id.btnDecline) {
-			sendTrackingRequestResponse(false);
+			MyCustomSender.sendTrackReqResp(trackReq, false);
 		}
 		finish();
-	}
-
-	private void sendTrackingRequestResponse(boolean acceptFlag) {
-
-		JSONObject obj;
-		try {
-			obj = new JSONObject();
-			obj.put("alert", "Hello Buddy Response!");
-			obj.put("action", MyCustomReceiver.intentActionTrackReqResp);
-			obj.put("acceptFlag", acceptFlag);
-			BuddyLocation buddyLocation = new BuddyLocation(
-					TrackABuddyApp.userName, "example.com", "San Jose");
-			obj.put("buddyLocation", BuddyLocation.toJson(buddyLocation));
-
-			ParsePush push = new ParsePush();
-			ParseQuery query = ParseInstallation.getQuery();
-
-			// Send response on sender's channel
-			query.whereEqualTo("deviceType", "android");
-			push.setQuery(query);
-			push.setChannel(senderLocation.getName());
-			push.setData(obj);
-			push.sendInBackground(new SendCallback() {
-
-				@Override
-				public void done(ParseException arg0) {
-					// Toast.makeText(getApplicationContext(),
-					// "Done with sending", Toast.LENGTH_LONG).show();
-				}
-			});
-
-			// Add sender as buddy to db
-			addSendertoDB();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void addSendertoDB() {
-		TrackABuddyApp.parseClient.addBuddy(senderLocation.getName(),
-				senderLocation.getImgUrl(), senderLocation.getCity());
-
 	}
 }
