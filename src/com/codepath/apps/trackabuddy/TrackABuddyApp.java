@@ -70,6 +70,7 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 
 		//ParseAnalytics.trackAppOpened(getIntent());
 	    parseInstallation.getInstallationId();
+	    parseInstallation.put("userId", userId);
 	    parseInstallation.put("username", userName);
 	    parseInstallation.saveInBackground();
 	}
