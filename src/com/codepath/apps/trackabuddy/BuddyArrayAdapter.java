@@ -50,13 +50,13 @@ public class BuddyArrayAdapter extends ArrayAdapter<Buddy> {
 		// Populate the data into the template view using the data object
 		//imageLoader.displayImage(buddy.getImgUrl(),
 			//	ivProfileImage);
-		tvBuddyName.setText(buddy.getName());
+		tvBuddyName.setText(buddy.getBuddyScreenName());
 		tvCity.setText(buddy.getCity());
 		tvDistance.setText(buddy.getDistance().toString());
 
 		// Save the buddyname in the imageView tag
 
-		ivProfileImage.setTag(buddy.getName());
+		ivProfileImage.setTag(buddy.getBuddyScreenName());
 		ivProfileImage.setOnClickListener(new OnClickListener() {
 
 			@Override

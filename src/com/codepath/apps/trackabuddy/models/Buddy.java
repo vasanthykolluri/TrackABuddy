@@ -11,41 +11,56 @@ import com.parse.ParseObject;
 
 @ParseClassName("Buddy")
 public class Buddy extends ParseObject {
-	//subclass should have a public default constructor
+	// subclass should have a public default constructor
 	public Buddy() {
 		super();
 	}
-	
-	public Buddy(String name, String imgUrl, String city) {
-		put("name", name);
+
+	public Buddy(String userId, String buddyId, String buddyScreenName,
+			String imgUrl, String city) {
+		put("userId", userId);
+		put("buddyId", buddyId);
+		put("buddyScreenName", buddyScreenName);
 		put("imgUrl", imgUrl);
-		//put("location", location);
+		// put("location", location);
 		put("city", city);
 	}
-	
-	public Buddy(String name, String imgUrl, String city, Long distance) {
-		put("name", name);
+
+	public Buddy(String userId, String buddyId, String buddyScreenName,
+			String imgUrl, String city, Long distance) {
+		put("userId", userId);
+		put("buddyId", buddyId);
+		put("buddyScreenName", buddyScreenName);
 		put("imgUrl", imgUrl);
+		// put("location", location);
 		put("city", city);
 		put("distance", distance);
 	}
-	
-	public String getId() {
+
+	public String getObjectId() {
 		return getString("objectId");
 	}
-	
-	public String getName() {
-		return getString("name");
+
+	public String getUserId() {
+		return getString("userId");
+	}
+
+	public String getBuddyUserId() {
+		return getString("buddyUserId");
+	}
+
+	public String getBuddyScreenName() {
+		return getString("buddyScreenName");
 	}
 
 	public String getImgUrl() {
 		return getString("imgUrl");
 	}
-	
+
 	public String getCity() {
 		return getString("city");
 	}
-	
+
 	public Long getDistance() {
 		return getLong("distance");
 	}
@@ -54,11 +69,9 @@ public class Buddy extends ParseObject {
 		// TODO Auto-generated method stub
 		return getDate("createdAt");
 	}
-	
+
 	public Date getUpdatedAt() {
 		// TODO Auto-generated method stub
 		return getDate("updatedAt");
 	}
-	
-	
 }

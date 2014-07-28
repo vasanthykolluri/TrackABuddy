@@ -12,29 +12,25 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
-
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.view.View;
-
 import android.widget.Toast;
-
-import com.codepath.apps.trackabuddy.models.BuddyLocation;
-import com.parse.ParseException;
 
 import com.codepath.apps.trackabuddy.fragments.BuddyListFragment;
 import com.codepath.apps.trackabuddy.fragments.BuddyMapFragment;
 import com.codepath.apps.trackabuddy.listeners.FragmentTabListener;
-import com.codepath.apps.trackabuddy.R;
-
+import com.codepath.apps.trackabuddy.models.BuddyLocation;
+import com.codepath.apps.trackabuddy.networking.MyCustomReceiver;
+import com.codepath.apps.trackabuddy.networking.MyCustomSender;
+import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.SendCallback;
 
 public class MainActivity extends FragmentActivity {
-	
+
 	BuddyListFragment buddyListFragment;
 	BuddyMapFragment buddyMapFragment;
 
@@ -54,36 +50,36 @@ public class MainActivity extends FragmentActivity {
 
 		setupTabs();
 	}
-	
+
 	private void setupTabs() {
 		ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayShowTitleEnabled(true);
 
 		Tab tab1 = actionBar
-			.newTab()
-			.setText("Map")
-			.setIcon(R.drawable.ic_map)
-			.setTag("BuddyMapFragment")
-			.setTabListener(
-				new FragmentTabListener<BuddyMapFragment>(R.id.flContainer, this, "first",
+				.newTab()
+				.setText("Map")
+				.setIcon(R.drawable.ic_map)
+				.setTag("BuddyMapFragment")
+				.setTabListener(
+						new FragmentTabListener<BuddyMapFragment>(
+								R.id.flContainer, this, "first",
 								BuddyMapFragment.class));
 
 		actionBar.addTab(tab1);
 		actionBar.selectTab(tab1);
 
 		Tab tab2 = actionBar
-			.newTab()
-			.setText("Buddy List")
-			.setIcon(R.drawable.ic_buddy)
-			.setTag("BuddyListFragment")
-			.setTabListener(
-			    new FragmentTabListener<BuddyListFragment>(R.id.flContainer, this, "second",
-			    		BuddyListFragment.class));
-
+				.newTab()
+				.setText("Buddy List")
+				.setIcon(R.drawable.ic_buddy)
+				.setTag("BuddyListFragment")
+				.setTabListener(
+						new FragmentTabListener<BuddyListFragment>(
+								R.id.flContainer, this, "second",
+								BuddyListFragment.class));
 		actionBar.addTab(tab2);
 	}
-	
 
 	@Override
 	public void onPause() {
@@ -104,11 +100,11 @@ public class MainActivity extends FragmentActivity {
 
 	public void onTrackClick(View v) {
 		if (v.getId() == R.id.btnTrackAkash) {
-			sendTrackingRequest("akash");
+			MyCustomSender.sendTrackReq("vasanthykolluri", "Vasanthy", "akashagarwal", "Akash");
 		} else if (v.getId() == R.id.btnTrackSadhana) {
-			sendTrackingRequest("sadhana");
+			MyCustomSender.sendTrackReq("vasanthykolluri", "Vasanthy", "sadhanasahas", "Sadhana");
 		} else if (v.getId() == R.id.btnTrackVasanthy) {
-			sendTrackingRequest("vasanthy");
+			MyCustomSender.sendTrackReq("vasanthykolluri", "Vasanthy", "vasanthykolluri", "Vasanthy");
 		}
 	}
 
@@ -117,7 +113,8 @@ public class MainActivity extends FragmentActivity {
 		JSONObject obj;
 		try {
 			obj = new JSONObject();
-			obj.put("alert", "Hello " + tgtUserName + "," + TrackABuddyApp.userName + " here...");
+			obj.put("alert", "Hello " + tgtUserName + ","
+					+ TrackABuddyApp.userName + " here...");
 			obj.put("action", MyCustomReceiver.intentActionTrackReq);
 			BuddyLocation senderLocation = new BuddyLocation(
 					TrackABuddyApp.userName, "example.com", "San Jose");
@@ -130,7 +127,7 @@ public class MainActivity extends FragmentActivity {
 			// Push the notification to Android users
 			query.whereEqualTo("deviceType", "android");
 			// Push the notification to a specific user
-			//query.whereEqualTo("username", tgtUserName);
+			// query.whereEqualTo("username", tgtUserName);
 			push.setQuery(query);
 			push.setChannel(tgtUserName);
 			push.setData(obj);
@@ -148,13 +145,13 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.contacts_settings, menu);
-        return true;
-    }
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.contacts_settings, menu);
+		return true;
+	}
 
-    public void onClickContacts(MenuItem menuItem){
-        Intent i = new Intent(this,ContactActivity.class);
-        startActivity(i);
-    }
+	public void onClickContacts(MenuItem menuItem) {
+		Intent i = new Intent(this, ContactActivity.class);
+		startActivity(i);
+	}
 }

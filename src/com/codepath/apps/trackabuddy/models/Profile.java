@@ -10,19 +10,26 @@ public class Profile extends ParseObject {
 		super();
 	}
 
-	public Profile(String name, String imgUrl, String phone) {
-		put("name", name);
+	public Profile(String userId, String screenName, String imgUrl, String phone) {
+		put("userId", userId);
+		put("screenName", screenName);
 		put("imgUrl", imgUrl);
-        put("phone", phone );
+		put("phone", phone);
 	}
 
-	public String getName() {
-		return getString("name");
+	public String getUserId() {
+		return getString("userId");
+	}
+
+	public String getScreenName() {
+		return getString("screenName");
 	}
 
 	public String getImgUrl() {
 		return getString("imgUrl");
 	}
 
-    public String getPhone() { return getString("phone");}
+	public String getPhone() {
+		return getString("phone");
+	}
 }

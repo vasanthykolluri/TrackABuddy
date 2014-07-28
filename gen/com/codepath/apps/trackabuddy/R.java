@@ -414,12 +414,12 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f020025;
     }
     public static final class id {
-        public static final int ViewColorPickerHelper=0x7f070027;
-        public static final int action_settings=0x7f07002f;
+        public static final int ViewColorPickerHelper=0x7f070025;
+        public static final int action_settings=0x7f070030;
         public static final int book_now=0x7f070010;
-        public static final int btnAccept=0x7f070028;
-        public static final int btnDecline=0x7f070029;
-        public static final int btnOK=0x7f070025;
+        public static final int btnAccept=0x7f070026;
+        public static final int btnDecline=0x7f070027;
+        public static final int btnOK=0x7f070029;
         public static final int btnTrackAkash=0x7f070018;
         public static final int btnTrackSadhana=0x7f070017;
         public static final int btnTrackVasanthy=0x7f070016;
@@ -430,18 +430,18 @@ containing a value of this type.
         public static final int buy_now=0x7f07000f;
         public static final int buy_with_google=0x7f07000e;
         public static final int classic=0x7f070011;
-        public static final int contacts=0x7f07002d;
-        public static final int details=0x7f070030;
-        public static final int durationTitle=0x7f070026;
+        public static final int contacts=0x7f07002e;
+        public static final int details=0x7f070031;
+        public static final int durationTitle=0x7f07002a;
         public static final int flContainer=0x7f070015;
         public static final int frContact=0x7f070014;
         public static final int grayscale=0x7f070012;
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
-        public static final int home=0x7f07002e;
+        public static final int home=0x7f07002f;
         public static final int hybrid=0x7f070004;
         public static final int ivProfileImage=0x7f070019;
-        public static final int ivProfileImg=0x7f07002a;
+        public static final int ivProfileImg=0x7f07002b;
         public static final int lvBuddies=0x7f07001d;
         public static final int lvContact=0x7f07001f;
         public static final int map=0x7f07001e;
@@ -459,9 +459,10 @@ containing a value of this type.
         public static final int tvBuddyName=0x7f07001a;
         public static final int tvCity=0x7f07001b;
         public static final int tvDistance=0x7f07001c;
-        public static final int tvName=0x7f07002b;
-        public static final int tvPhone=0x7f07002c;
-        public static final int tvTrackReqResp=0x7f070024;
+        public static final int tvName=0x7f07002c;
+        public static final int tvPhone=0x7f07002d;
+        public static final int tvTrackReq=0x7f070024;
+        public static final int tvTrackReqResp=0x7f070028;
         public static final int wrap_content=0x7f07000d;
     }
     public static final class integer {
@@ -476,9 +477,10 @@ containing a value of this type.
         public static final int fragment_buddymap=0x7f030005;
         public static final int fragment_contactlist=0x7f030006;
         public static final int fragment_menubar=0x7f030007;
-        public static final int popup_track_reqresponse=0x7f030008;
-        public static final int popupdialog=0x7f030009;
-        public static final int profile_item=0x7f03000a;
+        public static final int popup_trackreq=0x7f030008;
+        public static final int popup_trackreqresp=0x7f030009;
+        public static final int popupdialog=0x7f03000a;
+        public static final int profile_item=0x7f03000b;
     }
     public static final class menu {
         public static final int contacts_settings=0x7f0a0000;

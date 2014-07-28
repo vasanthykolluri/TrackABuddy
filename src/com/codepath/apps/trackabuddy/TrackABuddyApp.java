@@ -5,6 +5,7 @@ import android.content.Context;
 import com.codepath.apps.trackabuddy.models.Buddy;
 import com.codepath.apps.trackabuddy.models.Profile;
 import com.codepath.apps.trackabuddy.models.Settings;
+import com.codepath.apps.trackabuddy.networking.MyUtils;
 import com.codepath.apps.trackabuddy.networking.ParseClient;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -28,7 +29,8 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 	public static ParseClient parseClient;
 	
 	// Customize this manually
-	public static final String userName = "sadhana";
+	public static final String userId = "vasanthykolluri";
+	public static final String userName = "Vasanthy";
 	
 	@Override
 	public void onCreate() {
@@ -63,8 +65,8 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 
 		PushService.setDefaultPushCallback(this, MainActivity.class);
 
-		PushService.subscribe(context, TrackABuddyApp.userName, HandleTrackReqActivity.class);
-		PushService.subscribe(context, TrackABuddyApp.userName, ShowPopUpResponse.class);
+		PushService.subscribe(context, TrackABuddyApp.getChannelName(), MainActivity.class);
+		//PushService.subscribe(context, TrackABuddyApp.getChannelName(), ShowPopUpResponse.class);
 
 		//ParseAnalytics.trackAppOpened(getIntent());
 	    parseInstallation.getInstallationId();
@@ -74,5 +76,9 @@ public class TrackABuddyApp extends com.activeandroid.app.Application {
 
 	public ParseClient getParseClient() {
 		return parseClient;
+	}
+	
+	public static String getChannelName() {
+		return MyUtils.getChannelName(TrackABuddyApp.userId);
 	}
 }
