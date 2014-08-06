@@ -103,7 +103,7 @@ public class MyCustomReceiver extends BroadcastReceiver {
 									trackReqResp.getReceiverId(),
 									trackReqResp.getSenderId(),
 									trackReqResp.getSenderName(),
-									trackReqResp.getSenderImgUrl());
+									trackReqResp.getSenderImgUrl(), true);
 						}
 					}
 				}

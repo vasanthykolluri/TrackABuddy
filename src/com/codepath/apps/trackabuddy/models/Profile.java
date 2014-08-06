@@ -10,10 +10,9 @@ public class Profile extends ParseObject {
 		super();
 	}
 
-	public Profile(String userId, String screenName, String imgUrl, String phone) {
+	public Profile(String userId, String screenName, String phone) {
 		put("userId", userId);
 		put("screenName", screenName);
-		put("imgUrl", imgUrl);
 		put("phone", phone);
 	}
 

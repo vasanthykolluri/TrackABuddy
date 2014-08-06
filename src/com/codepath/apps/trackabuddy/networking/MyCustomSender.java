@@ -66,7 +66,7 @@ public class MyCustomSender {
 					trackReq.getSenderId(),
 					response);
 			obj.put("alert",
-					"TrackABuddy! Response from " + trackReqResp.getSenderName());
+					"Response from " + trackReqResp.getSenderName());
 			obj.put("trackReqResp", TrackReqResp.toJson(trackReqResp));
 
 			Log.d(TAG, "Resp Sender " + trackReqResp.getSenderId() + " "
