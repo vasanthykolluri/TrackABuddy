@@ -9,25 +9,13 @@
     tools:context="com.example.trackabuddy.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <FrameLayout
-        android:id="@+id/flContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:icon="@drawable/ic_track" >
-    </FrameLayout>
-
     <Button
         android:id="@+id/btnTrackVasanthy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="22dp"
         android:onClick="onTrackClick"
-        android:text="Track Vasanthy"
+        android:text="Track V"
         android:textSize="10sp" />
 
     <Button
@@ -36,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btnTrackVasanthy"
         android:layout_alignBottom="@+id/btnTrackVasanthy"
-        android:layout_marginLeft="19dp"
+        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/btnTrackVasanthy"
         android:onClick="onTrackClick"
-        android:text="Track Sadhana"
+        android:text="Track S"
         android:textSize="10sp" />
 
     <Button
@@ -48,9 +36,41 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btnTrackSadhana"
         android:layout_alignBottom="@+id/btnTrackSadhana"
-        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/btnTrackSadhana"
         android:onClick="onTrackClick"
-        android:text="Track Akash"
+        android:text="Track A"
         android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/btnProfilePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnTrackAkash"
+        android:layout_toRightOf="@+id/btnTrackAkash"
+        android:onClick="onPicUpload"
+        android:text="Upload Profile Pic"
+        android:textSize="10sp" />
+
+    <!--
+    <FrameLayout
+        android:id="@+id/flContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnTrackVasanthy"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        >
+    </FrameLayout>
+    -->
+
+    <FrameLayout
+        android:id="@+id/flContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnTrackVasanthy"
+        android:layout_below="@+id/btnTrackVasanthy"
+        android:layout_marginTop="16dp" >
+    </FrameLayout>
 
 </RelativeLayout>

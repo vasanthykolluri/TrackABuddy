@@ -1,15 +1,23 @@
 package com.codepath.apps.trackabuddy.networking;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Date;
+import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.codepath.apps.trackabuddy.R;
+import com.codepath.apps.trackabuddy.TrackABuddyApp;
 import com.codepath.apps.trackabuddy.models.Buddy;
+import com.codepath.apps.trackabuddy.models.Profile;
 import com.parse.CountCallback;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 
 public class ParseClient {
@@ -43,7 +51,8 @@ public class ParseClient {
 	}
 
 	public void addBuddy(final String userId, final String buddyId,
-			final String buddyScreenName, final String imgUrl, final Boolean trackingNow) {
+			final String buddyScreenName, final String imgUrl,
+			final Boolean trackingNow) {
 		ParseQuery<Buddy> count_query = ParseQuery.getQuery("Buddy");
 		count_query.countInBackground(new CountCallback() {
 			public void done(int count, ParseException e) {
@@ -63,10 +72,34 @@ public class ParseClient {
 		});
 	}
 
-	public static ParseClient getInstance(Class<ParseClient> class1,
-			Context context) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateProfileImage(byte[] image) {
+
+		// Upload the image into Parse Cloud
+		final ParseFile parseFile = new ParseFile(TrackABuddyApp.userId + "_profile_img.png", image);
+		parseFile.saveInBackground();
+
+		// Save imageUrl in the user's profile
+		ParseQuery<Profile> query = new ParseQuery<Profile>("Profile");
+		query.whereEqualTo("userId", TrackABuddyApp.userId);
+		query.findInBackground(new FindCallback<Profile>() {
+
+			@Override
+			public void done(List<Profile> profileObjs, ParseException e) {
+				if (e == null) {
+					if (profileObjs.size() == 1) {
+						profileObjs.get(0).put("imgUrl", parseFile.getUrl());
+						profileObjs.get(0).saveInBackground();
+
+					} else {
+						Log.d("error",
+								"Error: Multiple profiles exist for userId:"
+										+ TrackABuddyApp.userId);
+					}
+				} else {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }
