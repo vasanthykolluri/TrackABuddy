@@ -11,15 +11,15 @@ public class LocationUpdate implements Serializable {
 
 	private String senderId;
 	private String receiverId;
-	private Long latitude;
-	private Long longitude;
+	private double latitude;
+	private double longitude;
 
 	public LocationUpdate() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LocationUpdate(String senderId, String receiverId, Long latitude,
-			Long longitude) {
+	public LocationUpdate(String senderId, String receiverId, double latitude,
+			double longitude) {
 		this.senderId = senderId;
 		this.receiverId = receiverId;
 		this.latitude = latitude;
@@ -34,11 +34,11 @@ public class LocationUpdate implements Serializable {
 		return receiverId;
 	}
 
-	public Long getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
-	public Long getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
@@ -48,8 +48,8 @@ public class LocationUpdate implements Serializable {
 		try {
 			locationUpdate.senderId = jsonObject.getString("senderId");
 			locationUpdate.receiverId = jsonObject.getString("receiverId");
-			locationUpdate.latitude = jsonObject.getLong("latitude");
-			locationUpdate.longitude = jsonObject.getLong("longitude");
+			locationUpdate.latitude = jsonObject.getDouble("latitude");
+			locationUpdate.longitude = jsonObject.getDouble("longitude");
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;

@@ -28,8 +28,8 @@ public class Buddy extends ParseObject {
 		return getString("userId");
 	}
 
-	public String getBuddyUserId() {
-		return getString("buddyUserId");
+	public String getBuddyId() {
+		return getString("buddyId");
 	}
 
 	public String getBuddyScreenName() {
@@ -40,12 +40,12 @@ public class Buddy extends ParseObject {
 		return getString("imgUrl");
 	}
 
-	public Long getLatitude() {
-		return getLong("latitude");
+	public double getLatitude() {
+		return getDouble("latitude");
 	}
 	
-	public Long getLongitude() {
-		return getLong("longitude");
+	public double getLongitude() {
+		return getDouble("longitude");
 	}
 	
 	public String getCity() {
@@ -54,6 +54,10 @@ public class Buddy extends ParseObject {
 
 	public String getCountry() {
 		return getString("country");
+	}
+	
+	public void setDistance(float distance){
+		put("distance", distance);
 	}
 	
 	public Long getDistance() {
